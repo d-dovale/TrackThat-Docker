@@ -18,6 +18,9 @@ function RegisterPage() {
 
     async function signupRequest() {
         try {
+            if (name.length < 2 || email.length < 2 || password.length != confirmPassword) {
+                throw Error(`Invalid data provided, check email, name, and that passwords match.`)
+            }
             const res = await fetch(SIGNUPURL, {
                 method: "POST",
                 headers: {
@@ -58,8 +61,8 @@ function RegisterPage() {
             </div>
             <div className="register-box">
                 <h2>Register</h2>
-                <input type="text" placeholder="Email" className="register-field" value={name} onChange={e => setName(e.target.value)} />
-                <input type="text" placeholder="Full Name" className="register-field" value={email} onChange={e => setEmail(e.target.value)} />
+                <input type="text" placeholder="Email" className="register-field" value={email} onChange={e => setEmail(e.target.value)} />
+                <input type="text" placeholder="Full Name" className="register-field" value={name} onChange={e => setName(e.target.value)} />
                 <input type="password" placeholder="Password" className="register-field" value={password} onChange={e => setPassword(e.target.value)} />
                 <input type="password" placeholder="Confirm Password" className="register-field" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                 <button className="register-button" onClick={signupRequest}>Create account</button>
