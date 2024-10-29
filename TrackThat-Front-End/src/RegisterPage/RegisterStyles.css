@@ -1,0 +1,108 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to start from top */
+    min-height: 100vh;
+    background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/56e6de80157ddad1955e89a6dbc9ea24bdb4e281ce042929e540705f9be89443?placeholderIfAbsent=true&apiKey=875586cce6ab4f95a1d84bf340e03a56');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 20px; /* Top padding to adjust header position */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.close-icon span {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    user-select: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.close-icon img {
+    width: 24px;  /* Keep the X icon itself reasonably sized */
+    height: auto;
+}
+
+.logo-and-title {
+    font-size: 32px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+.logo-text {
+    font-size: 24px;
+    color: white;
+    margin-left: 10px;
+}
+
+.register-box {
+    width: 360px;
+    padding: 2rem;
+    background-color: rgba(50, 38, 89, 0.85);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+}
+
+.register-field {
+    background-color: transparent;
+    border: 2px solid #4C3575;
+    color: white;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    width: calc(100% - 30px);
+    border-radius: 4px;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #4C3575;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.register-link {
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+.register-link span {
+    color: #FFFFFF; /* Color for "Already have an account?" */
+}
+.register-link span:hover{
+    color: #EC3EFF;
+}
+.register-link a {
+    color: #9E50A7; /* Color for "Sign In" */
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 5px;
+}

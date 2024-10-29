@@ -1,0 +1,160 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height: 100vh;
+    min-width: 100vh;
+    background-color: #2D1E45; /* Fallback color */
+    background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/56e6de80157ddad1955e89a6dbc9ea24bdb4e281ce042929e540705f9be89443?placeholderIfAbsent=true&apiKey=875586cce6ab4f95a1d84bf340e03a56');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+  
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+  
+  
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+  
+.logo {
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 5px; 
+}
+  
+.site-title {
+    font-size: 32px;
+    font-weight: bolder;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.nav-button1 {
+    display: flex;
+    align-items: center;  /* Aligns items vertically in the center */
+    justify-content: center;  /* Centers content horizontally */
+    background-color: #593485;
+    color: white;
+    font-size: 18px;  /* Text size */
+    padding: 7px 10px;  /* Padding around text */
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-top: 5px;
+    width: auto;
+}
+.nav-button2 {
+    display: flex;
+    align-items: center;  /* Aligns items vertically in the center */
+    justify-content: center;  /* Centers content horizontally */
+    background-color: #593485;
+    color: white;
+    font-size: 18px;  /* Text size */
+    padding: 7px 10px;  /* Padding around text */
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-top: 5px;
+    width: auto;
+}
+
+.nav-button1 img {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+} 
+.nav-button2 img {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+} 
+
+.nav-button:last-child {
+    margin-right: 0;  /* Removes margin from the last button to avoid unnecessary spacing */
+}
+
+ 
+
+.content-container {
+    text-align: center;
+    width: 100%;
+    margin: 20px 0;
+    margin-top: 150px;
+}
+  
+.main-title {
+    font-size: 64px;
+    font-weight: normal; 
+    color: #FFFFFF; /* White color for visibility */
+    margin-bottom: 10px; /* Space between the title and subtitle */
+    width: 100%; /* Full width */
+    margin: 0 auto 10px auto;
+}
+  
+.subtitle {
+    font-size: 24px; /* Smaller font size for the subtitle */
+    color: #B7B7B7; /* White color for consistency */
+    width: 100%; /* Full width */
+    max-width: 600px; /* Maximum width to match the design */
+    margin: 0 auto 20px auto;
+    margin-top: 20px;
+    line-height: 1.4; /* Adjust line height for better readability */
+}
+  
+.try-now-button {
+    font-size: 2rem; /* Increase font size */
+    font-weight: bolder;
+    padding: 15px 30px; /* Increase padding for a bigger button */
+    background-color: #593485;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px; /* Slightly more rounded */
+    margin-top: 80px; /* Adjust top margin */
+}
+  
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.icon {
+    width: 60px; /* Adjust this value to reduce the size of the icons */
+    height: 60px; /* Maintains the aspect ratio */
+    display: block; /* Ensures that the image is treated as a block-level element, centering if needed */
+}

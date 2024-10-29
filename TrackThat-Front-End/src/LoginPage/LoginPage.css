@@ -1,0 +1,153 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to start from the top */
+    min-height: 100vh;
+    background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/56e6de80157ddad1955e89a6dbc9ea24bdb4e281ce042929e540705f9be89443?placeholderIfAbsent=true&apiKey=875586cce6ab4f95a1d84bf340e03a56');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 20px; /* Top padding to adjust the header position */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.close-icon span {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    user-select: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.close-icon img {
+    width: 24px; /* Keep the X icon reasonably sized */
+    height: auto;
+    cursor: pointer;
+}
+
+.logo-and-title {
+    font-size: 32px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+.logo-text {
+    font-size: 24px;
+    color: white;
+    margin-left: 10px;
+}
+
+.login-box {
+    width: 360px;
+    padding: 2rem;
+    background-color: rgba(50, 38, 89, 0.85);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+}
+
+.login-field {
+    background-color: transparent;
+    border: 2px solid #4C3575;
+    color: white;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    width: calc(100% - 30px);
+    border-radius: 4px;
+}
+.password-container {
+    position: relative;
+    width: 100%;
+}
+.password-input {
+    width: 100%;
+    padding-right: 70px; /* Adds space for the "Forgot?" link */
+    box-sizing: border-box;
+}
+
+.forgot-link {
+    position: absolute;
+    right: 10px; /* Position the link on the right inside the input box */
+    top: 50%;
+    transform: translateY(-120%);
+    font-size: 0.9rem;
+    color: #9e8fb2; /* Adjust color to make it visible */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.or-section {
+    margin-top: 10px;
+    margin-bottom: 10px; /* Add more space below these elements */
+    display: block; /* Ensure these elements are block to take full width */
+    text-align: center; /* Center-align the text */
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #4C3575;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.google-signin-button{
+    width: 100%;
+    padding: 10px 0;
+    background-color: #151515;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.google-signin-button img {
+    width: 24px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between the icon and text */
+    vertical-align: middle; /* Align vertically with the text */
+}
+
+.register-link {
+    color: #FFFFFF; /* Example: A shade of green */
+    cursor: pointer; /* Ensures it looks clickable */
+    display: block; /* Makes it take the full width, easier to click */
+    text-align: center; /* Centers the text */
+    margin-top: 15px; /* Adds some space above the link */
+}
+.register-link span {
+    font-weight: bold; /* Makes the text bolder */
+    text-decoration: underline; /* Underlines the text */
+    color: #9E50A7; /* Green color */
+}
+
+.register-link span:hover {
+    color: #EC3EFF; /* Darker green on hover */
+}
