@@ -58,7 +58,7 @@ function RegisterPage() {
             </div>
             <div className="register-box">
                 <h2>Register</h2>
-                <input type="text" placeholder="Email" className="register-field" value={name} onChange={e => setName(e.target)} />
+                <input type="text" placeholder="Email" className="register-field" value={name} onChange={e => setName(e.target.value)} />
                 <input type="text" placeholder="Full Name" className="register-field" value={email} onChange={e => setEmail(e.target.value)} />
                 <input type="password" placeholder="Password" className="register-field" value={password} onChange={e => setPassword(e.target.value)} />
                 <input type="password" placeholder="Confirm Password" className="register-field" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
