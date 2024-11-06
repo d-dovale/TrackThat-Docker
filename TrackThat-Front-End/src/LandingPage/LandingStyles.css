@@ -22,90 +22,6 @@ html, body {
     background-attachment: fixed;
     color: white;
 }
-  
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 5px 10px;
-    box-sizing: border-box;
-}
-
-  
-  
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-  
-.logo {
-    width: 40px;
-    margin-left: 10px;
-    margin-top: 5px; 
-}
-  
-.site-title {
-    font-size: 32px;
-    font-weight: bolder;
-    margin-left: 10px;
-    margin-top: 5px;
-}
-
-.nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-
-}
-.nav-button1 {
-    display: flex;
-    align-items: center;  /* Aligns items vertically in the center */
-    justify-content: center;  /* Centers content horizontally */
-    background-color: #593485;
-    color: white;
-    font-size: 18px;  /* Text size */
-    padding: 7px 10px;  /* Padding around text */
-    border-radius: 5px;
-    border: 1px solid white;
-    cursor: pointer;
-    margin-right: 20px;
-    margin-top: 5px;
-    width: auto;
-}
-.nav-button2 {
-    display: flex;
-    align-items: center;  /* Aligns items vertically in the center */
-    justify-content: center;  /* Centers content horizontally */
-    background-color: #593485;
-    color: white;
-    font-size: 18px;  /* Text size */
-    padding: 7px 10px;  /* Padding around text */
-    border-radius: 5px;
-    border: 1px solid white;
-    cursor: pointer;
-    margin-right: 20px;
-    margin-top: 5px;
-    width: auto;
-}
-
-.nav-button1 img {
-    width: 20px;
-    height: auto;
-    margin-right: 5px;
-} 
-.nav-button2 img {
-    width: 20px;
-    height: auto;
-    margin-right: 5px;
-} 
-
-.nav-button:last-child {
-    margin-right: 0;  /* Removes margin from the last button to avoid unnecessary spacing */
-}
-
- 
 
 .content-container {
     text-align: center;
@@ -117,7 +33,7 @@ html, body {
 .main-title {
     font-size: 64px;
     font-weight: normal; 
-    color: #FFFFFF; /* White color for visibility */
+    color: #FFFFFF;
     margin-bottom: 10px; /* Space between the title and subtitle */
     width: 100%; /* Full width */
     margin: 0 auto 10px auto;

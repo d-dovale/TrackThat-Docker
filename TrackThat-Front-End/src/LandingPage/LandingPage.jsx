@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import './LandingStyles.css';
+import Navbar from "../Components/navbar";
 import images from "../images";
 
 function LandingPage() {
@@ -15,33 +16,7 @@ function LandingPage() {
 
   return (
     <div className="landing-page">
-      <header className="header">
-        <div className="logo-container">
-          <img 
-            src={images.logo} 
-            alt="TrackThat Logo" 
-            className="logo" 
-          />
-          <span className="site-title">trackthat</span>
-        </div>
-        <div className="nav">
-          <button className="nav-button1">
-            <img 
-              src={images.dashboardIcon}
-              alt="Dashboard Icon"
-            />
-            Dashboard
-          </button>
-          <button className="nav-button2" onClick={handleLoginClick}>
-            <img 
-              src={images.logInIcon}
-              alt="Log In Icon"
-            />
-            Sign In
-          </button>
-        </div>
-      </header>
-
+      <Navbar/>
       <div className="content-container">
         <h1 className="main-title">Track Your Path to Success</h1>
         <p className="subtitle">Stay on top of your job applications with TrackThat, the ultimate tool for organizing and tracking your job search progress.</p>
@@ -83,5 +58,6 @@ function LandingPage() {
     </div>
   );
 }
+
 
 export default LandingPage;
