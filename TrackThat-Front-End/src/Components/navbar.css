@@ -1,58 +1,59 @@
 /* src/components/Navbar.css */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 5px 10px;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
   }
   
 .logo-container {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-width: 40px;
-margin-left: 10px;
-margin-top: 5px;
+  width: 40px;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
 .site-title {
-font-size: 32px;
-font-weight: bolder;
-margin-left: 10px;
-margin-top: 5px;
+  font-size: 32px;
+  font-weight: bolder;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
 .nav {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .nav-button1, .nav-button2 {
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: #593485;
-color: white;
-font-size: 18px;
-padding: 7px 10px;
-border-radius: 5px;
-border: 1px solid white;
-cursor: pointer;
-margin-right: 20px;
-margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #593485;
+  color: white;
+  font-size: 18px;
+  font-family: "Montserrat", serif;
+  padding: 7px 10px;
+  border-radius: 5px;
+  border: 1px solid white;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-top: 5px;
 }
 
 .nav-button1 img,
 .nav-button2 img {
-width: 20px;
-margin-right: 5px;
+  width: 20px;
+  margin-right: 5px;
 }
 
 .nav-button:last-child {
-margin-right: 0;
+  margin-right: 0;
 }
   

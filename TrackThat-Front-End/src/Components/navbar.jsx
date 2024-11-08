@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import images from "../images";
-import './Navbar.css';
+import './navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -29,5 +29,7 @@ function Navbar() {
     </header>
   );
 }
+
+
 
 export default Navbar;
