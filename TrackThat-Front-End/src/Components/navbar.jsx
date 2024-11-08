@@ -22,7 +22,7 @@ function Navbar() {
           Dashboard
         </button>
         <button className="nav-button2" onClick={handleLoginClick}>
-          <img src={images.logInIcon} alt="Log In Icon" />
+          <img src={images.login} alt="Log In Icon" />
           Sign In
         </button>
       </div>

@@ -8,14 +8,15 @@ html, body {
 }
 
 .landing-page {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
     min-height: 100vh;
     min-width: 100vh;
+    background: url('../src/assets/Background Image.png') lightgray 50% / cover no-repeat;
     background-color: #2D1E45; /* Fallback color */
-    background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/56e6de80157ddad1955e89a6dbc9ea24bdb4e281ce042929e540705f9be89443?placeholderIfAbsent=true&apiKey=875586cce6ab4f95a1d84bf340e03a56');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -27,7 +28,7 @@ html, body {
     text-align: center;
     width: 100%;
     margin: 20px 0;
-    margin-top: 150px;
+    margin-top: 50px;
 }
   
 .main-title {
@@ -43,7 +44,7 @@ html, body {
     font-size: 24px; /* Smaller font size for the subtitle */
     color: #B7B7B7; /* White color for consistency */
     width: 100%; /* Full width */
-    max-width: 600px; /* Maximum width to match the design */
+    max-width: 700px; /* Maximum width to match the design */
     margin: 0 auto 20px auto;
     margin-top: 20px;
     line-height: 1.4; /* Adjust line height for better readability */
@@ -65,7 +66,7 @@ html, body {
     display: flex;
     justify-content: center;
     gap: 50px;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 50px;
 }
 

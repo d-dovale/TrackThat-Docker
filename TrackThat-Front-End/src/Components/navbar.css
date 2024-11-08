@@ -4,9 +4,9 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 5px 10px;
   box-sizing: border-box;
-  }
+  border-bottom: 2px solid #462F4C;
+}
   
 .logo-container {
   display: flex;

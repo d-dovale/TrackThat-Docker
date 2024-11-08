@@ -23,9 +23,9 @@ function LandingPage() {
         <button className="try-now-button" onClick={handleTryNowClick}>Try Now</button>
       </div>
 
-      <div className="icon-container mt-20 grid grid-cols-3 md:grid-cols-6 gap-10 justify-items-center">
+      <div className="icon-container">
         <img
-          src={images.googleIcon}
+          src= {images.googleIcon}
           alt="Google Icon"
           className="icon"
         />
@@ -37,11 +37,6 @@ function LandingPage() {
         <img
           src={images.youtubeIcon}
           alt="YouTube Icon"
-          className="icon"
-        />
-        <img
-          src={images.instagramIcon}
-          alt="Instagram Icon"
           className="icon"
         />
         <img

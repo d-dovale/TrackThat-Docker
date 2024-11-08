@@ -36,8 +36,7 @@ function LoginPage() {
             <div className="header">
                 <div className="close-icon" onClick={handleCloseClick}>
                     <img
-                        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/df2471cce2f0458801136c5f9b4f02482638ecf298058104d86b7cf9f615f672?placeholderIfAbsent=true&apiKey=875586cce6ab4f95a1d84bf340e03a56&width=100 100w"
-                        sizes="(max-width: 768px) 80px, (max-width: 1200px) 80px, 50px"
+                        src={images.close}
                         alt="Close Icon"
                         className="close-icon-image"
                     />

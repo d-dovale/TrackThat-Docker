@@ -4,8 +4,6 @@
     align-items: center;
     justify-content: flex-start; /* Align items to start from the top */
     min-height: 100vh;
-    background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/56e6de80157ddad1955e89a6dbc9ea24bdb4e281ce042929e540705f9be89443?placeholderIfAbsent=true&apiKey=875586cce6ab4f95a1d84bf340e03a56');
-    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
