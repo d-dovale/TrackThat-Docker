@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: flex-start; /* Align items to start from the top */
     min-height: 100vh;
+    background: url('../src/assets/Background Image.png');
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -27,12 +29,15 @@
     position: absolute;
     top: 20px;
     left: 20px;
+    
 }
 
 .close-icon img {
     width: 24px; /* Keep the X icon reasonably sized */
     height: auto;
     cursor: pointer;
+    margin-bottom: 5px;
+    margin-top: -10px;
 }
 
 .logo-and-title {
@@ -44,10 +49,11 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    margin-top: -10px;
 }
 
 .logo {
-    width: 50px;
+    width: 40px;
     height: auto;
 }
 

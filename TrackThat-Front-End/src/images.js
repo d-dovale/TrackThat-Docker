@@ -9,6 +9,13 @@ import backgroundImage from "../src/assets/Background Image.png";
 import close from "../src/assets/Close.png";
 import dashboardIcon from "../src/assets/Control Panel.png";
 import login from "../src/assets/Login.png";
+import graphIcon from "./assets/Graph.png";
+import jobSeekerIcon from "./assets/Job Seeker.png";
+import jobIcon from "./assets/Job.png";
+import plusIcon from "./assets/Plus.png";
+import searchIcon from "./assets/Search.png";
+import settingsIcon from "./assets/Settings.png";
+import userIcon from "./assets/Male User.png";
 
 const images = {
     logo: logo,
@@ -21,7 +28,14 @@ const images = {
     backgroundImage: backgroundImage,
     dashboardIcon: dashboardIcon,
     login: login,
-    close: close
+    close: close,
+    graphIcon: graphIcon,
+    jobSeekerIcon: jobSeekerIcon,
+    jobIcon, jobIcon,
+    plusIcon, plusIcon,
+    searchIcon, searchIcon,
+    settingsIcon, settingsIcon,
+    userIcon, userIcon
 };
 
 export default images;

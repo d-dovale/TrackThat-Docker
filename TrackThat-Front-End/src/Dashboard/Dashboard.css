@@ -1,0 +1,25 @@
+.dashboard-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #34143b;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.dashboard-layout {
+    display: flex;
+    height: 100%;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    color: white; /* Ensure content text is visible against the dark background */
+    overflow-y: auto; /* Add scroll if content overflows */
+    font-size: 100px;
+}

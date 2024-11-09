@@ -26,7 +26,7 @@ function LoginPage() {
                 throw Error(`Invalid login credentials, status ${res.status}`)
             const data = await res.json()
             localStorage.setItem("token", data.access_token)
-            navigate("/dashboard")
+            navigate("/dashboard/overview")
         } catch (e) {
             alert("Failed", e.message)
         }
