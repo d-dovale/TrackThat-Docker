@@ -35,13 +35,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #593485;
+  background-color: #462F4C;
   color: white;
   font-size: 18px;
   font-family: "Montserrat", serif;
-  padding: 7px 10px;
-  border-radius: 5px;
-  border: 1px solid white;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
   cursor: pointer;
   margin-right: 20px;
   margin-top: 5px;
@@ -50,7 +51,7 @@
 .nav-button1 img,
 .nav-button2 img {
   width: 20px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .nav-button:last-child {

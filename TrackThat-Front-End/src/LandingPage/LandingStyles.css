@@ -15,7 +15,7 @@ html, body {
     align-items: stretch;
     min-height: 100vh;
     min-width: 100vh;
-    background: url('../src/assets/Background Image.png') lightgray 50% / cover no-repeat;
+    background: url('../src/assets/Background Image.png');
     background-color: #2D1E45; /* Fallback color */
     background-size: cover;
     background-position: center;
