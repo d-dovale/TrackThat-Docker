@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LoginPage.css';
+import styles from './LoginPage.module.css'; // Updated import for CSS Modules
 import Logo from '../Components/logo';
 import images from '../images'; // Adjust the path as necessary
 import { useNavigate } from 'react-router-dom';
@@ -31,41 +31,51 @@ function LoginPage() {
   };
 
   return (
-    <div className="signin-container">
+    <div className={styles.signinContainer}>
       <Logo />
-      <div className="close-icon" onClick={handleCloseClick}>
-        <img src={images.close} alt="Close Icon" className="close-icon-image"/>
+      <div className={styles.closeIcon} onClick={handleCloseClick}>
+        <img src={images.close} alt="Close Icon" className={styles.closeIconImage} />
       </div>
-      <div className="signin-box">
-        <div className="signin-form">
-          <h2 className="signin-header">Sign In</h2>
+      <div className={styles.signinBox}>
+        <div className={styles.signinForm}>
+          <h2 className={styles.signinHeader}>Sign In</h2>
+          <input
+            type="text"
+            placeholder="Email"
+            className={`${styles.inputField} ${styles.emailInput}`}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div className={styles.passwordContainer}>
             <input
-              type="text"
-              placeholder="Email"
-              className="input-field email-input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="password"
+              placeholder="Password"
+              className={`${styles.inputField} ${styles.passwordInput}`}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="password-container">
-              <input
-                type="password"
-                placeholder="Password"
-                className="input-field password-input"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <a href="#" className="forgot-link">Forgot?</a>
-            </div>
-            <button className="signin-button" onClick={loginRequest}>Sign In</button>
-            <div className="or-section">OR</div>
-            <button className="google-signin-button">
-              <img src={images.googleIcon} alt="Sign in with Google" />
-              Sign in with Google
-            </button>
+            <a href="#" className={styles.forgotLink}>
+              Forgot?
+            </a>
+          </div>
+          <button className={styles.signinButton} onClick={loginRequest}>
+            Sign In
+          </button>
+          <div className={styles.orSection}>OR</div>
+          <button className={styles.googleSigninButton}>
+            <img src={images.googleIcon} alt="Sign in with Google" />
+            Sign in with Google
+          </button>
         </div>
-        <div className='signin-register-box-wrapper'>
-          <div className="register-box">
-            New to trackthat? <span className="create-account-link" onClick={() => navigate("/register")}>Create an account</span>
+        <div className={styles.registerBoxWrapper}>
+          <div className={styles.registerBox}>
+            New to trackthat?{' '}
+            <span
+              className={styles.createAccountLink}
+              onClick={() => navigate('/register')}
+            >
+              Create an account
+            </span>
           </div>
         </div>
       </div>

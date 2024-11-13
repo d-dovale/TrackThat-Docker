@@ -61,6 +61,10 @@ html, body {
     border-radius: 15px; /* Slightly more rounded */
     margin-top: 80px; /* Adjust top margin */
 }
+
+.try-now-button:hover {
+    background-color: #53385b; /* Darker color on hover */
+}
   
 .icon-container {
     display: flex;
