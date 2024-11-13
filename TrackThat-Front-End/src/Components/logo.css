@@ -1,0 +1,19 @@
+/* src/components/Logo.css */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 40px;
+    margin-left: 10px;
+  }
+  
+  .site-title {
+    font-size: 32px;
+    font-weight: bolder;
+    margin-left: 15px;
+    line-height: 1;
+    color: white;
+  }

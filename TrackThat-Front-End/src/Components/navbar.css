@@ -6,6 +6,7 @@
   width: 100%;
   box-sizing: border-box;
   border-bottom: 2px solid #462F4C;
+  padding: 15px 30px 15px 30px;
 }
   
 .logo-container {
@@ -39,13 +40,17 @@
   color: white;
   font-size: 18px;
   font-family: "Montserrat", serif;
-  padding: 10px 20px;
+  padding: 10px 16px;
   border-radius: 15px;
   border: none;
   outline: none;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 25px;
   margin-top: 5px;
+}
+
+.nav-button1:hover, .nav-button2:hover {
+  background-color: #53385b;
 }
 
 .nav-button1 img,
