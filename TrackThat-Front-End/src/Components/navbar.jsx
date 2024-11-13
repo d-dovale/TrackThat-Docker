@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import images from "../images";
+import Logo from "./logo";
 import './navbar.css';
 
 function Navbar() {
@@ -12,10 +13,7 @@ function Navbar() {
 
   return (
     <header className="header">
-      <div className="logo-container">
-        <img src={images.logo} alt="TrackThat Logo" className="logo" />
-        <span className="site-title">trackthat</span>
-      </div>
+      <Logo />
       <div className="nav">
         <button className="nav-button1">
           <img src={images.dashboardIcon} alt="Dashboard Icon" />

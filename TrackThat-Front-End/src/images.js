@@ -5,7 +5,7 @@ import youtubeIcon from "../src/assets/YouTube Icon.png";
 import instagramIcon from "../src/assets/Instagram Icon.png";
 import twitterIcon from "../src/assets/Twitter Icon.png";
 import facebookIcon from "../src/assets/Facebook Icon.png";
-import backgroundImage from "../src/assets/Background Image.png";
+import backgroundImage from "../src/assets/background_pic.png";
 import close from "../src/assets/Close.png";
 import dashboardIcon from "../src/assets/Control Panel.png";
 import login from "../src/assets/Login.png";

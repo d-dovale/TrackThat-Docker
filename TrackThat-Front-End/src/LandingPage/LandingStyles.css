@@ -15,7 +15,7 @@ html, body {
     align-items: stretch;
     min-height: 100vh;
     min-width: 100vh;
-    background: url('../src/assets/Background Image.png');
+    background: url('../src/assets/background_pic.png');
     background-color: #2D1E45; /* Fallback color */
     background-size: cover;
     background-position: center;
@@ -54,11 +54,11 @@ html, body {
     font-size: 2rem; /* Increase font size */
     font-weight: bolder;
     padding: 15px 30px; /* Increase padding for a bigger button */
-    background-color: #593485;
+    background-color: #462F4C;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 8px; /* Slightly more rounded */
+    border-radius: 15px; /* Slightly more rounded */
     margin-top: 80px; /* Adjust top margin */
 }
   
