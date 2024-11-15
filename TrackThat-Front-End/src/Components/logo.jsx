@@ -1,12 +1,12 @@
 import React from 'react';
-import './logo.css';
+import styles from './logo.module.css';
 import images from "../images";
 
 function Logo() {
   return (
-    <div className="logo-container">
-      <img src={images.logo} alt="TrackThat Logo" className="logo" />
-      <span className="site-title">trackthat</span>
+    <div className={styles["logo-container"]}>
+      <img src={images.logo} alt="TrackThat Logo" className={styles.logo} />
+      <span className={styles["site-title"]}>trackthat</span>
     </div>
   );
 }
