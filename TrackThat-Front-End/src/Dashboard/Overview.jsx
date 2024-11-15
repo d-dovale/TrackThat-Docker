@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Navbar from "../Components/navbar";
 import images from "../images";
-import "./Dashboard.css";
+import styles from "./Dashboard.module.css";
 
 
 function Overview(){
