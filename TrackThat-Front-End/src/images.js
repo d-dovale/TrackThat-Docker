@@ -16,6 +16,11 @@ import plusIcon from "./assets/Plus.png";
 import searchIcon from "./assets/Search.png";
 import settingsIcon from "./assets/Settings.png";
 import userIcon from "./assets/Male User.png";
+import Calendar from "./assets/Calendar.png"
+import Company from "./assets/Company.png"
+import Position from "./assets/Position.png"
+import Season from "./assets/Season.png"
+import Status from "./assets/Status.png"
 
 const images = {
     logo: logo,
@@ -31,11 +36,16 @@ const images = {
     close: close,
     graphIcon: graphIcon,
     jobSeekerIcon: jobSeekerIcon,
-    jobIcon, jobIcon,
-    plusIcon, plusIcon,
-    searchIcon, searchIcon,
-    settingsIcon, settingsIcon,
-    userIcon, userIcon
+    jobIcon: jobIcon,
+    plusIcon: plusIcon,
+    searchIcon: searchIcon,
+    settingsIcon: settingsIcon,
+    userIcon: userIcon,
+    Calendar: Calendar,
+    Company: Company,
+    Position: Position,
+    Season: Season,
+    Status: Status
 };
 
 export default images;
