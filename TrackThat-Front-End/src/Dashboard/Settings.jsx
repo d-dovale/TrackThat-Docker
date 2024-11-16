@@ -48,11 +48,17 @@ function Settings(){
                 </div>
                 <div className={styles["settings-preferences"]}>
                     <h2 className={styles["settings-subtitle"]}>Preferences</h2>
-                    <input className={styles["settings-input-field"]} placeholder="Career Stage" />
-                    <input className={styles["settings-input-field"]} placeholder="Preferred Job Type" />
-                    <input className={styles["settings-input-field"]} placeholder="Location Preferences" />
-                    <input className={styles["settings-input-field"]} placeholder="Fields of Interest" />
-                    <input className={styles["settings-input-field"]} placeholder="Skills/Technologies" />
+                    <label>Career Stage</label>
+                    <input className={styles["settings-input-field"]} />
+                    <label>Preferred Job Type</label>
+                    <input className={styles["settings-input-field"]} />
+                    <label>Location Preferences</label>
+                    <input className={styles["settings-input-field"]} />
+                    <label>Fields of Interest</label>
+                    <input className={styles["settings-input-field"]} />
+                    <label>Skills/Technologies</label>
+                    <input className={styles["settings-input-field"]} />
+                    <button className={styles["settings-submit-button"]}>Update</button>
                 </div>
             </div>
         </div>

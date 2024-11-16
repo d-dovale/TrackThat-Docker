@@ -121,4 +121,60 @@
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
+    font-family: "Montserrat", serif;
+}
+
+@media (max-width: 768px) {
+    .settings-profile-section, .settings-info-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .settings-account-info, .settings-preferences {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .settings-upload-button, .settings-remove-button {
+        width: 100%;
+        justify-content: center;  /* Center button text */
+    }
+
+    .settings-input-field {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .settings-icon {
+        margin-bottom: 10px;
+    }
+
+    .settings-title {
+        text-align: center;
+        font-size: 24px;  /* Smaller font size for smaller screens */
+    }
+
+    .settings-profile-section {
+        padding: 15px;
+    }
+
+    .settings-account-info, .settings-preferences {
+        padding: 10px;
+        font-size: 16px;  /* Smaller font size for readability */
+    }
+
+    .settings-upload-button, .settings-remove-button {
+        padding: 8px 10px;
+        font-size: 14px;  /* Smaller font size for buttons */
+    }
+
+    .settings-submit-button {
+        padding: 6px 12px;
+    }
 }
