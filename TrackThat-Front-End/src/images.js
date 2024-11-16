@@ -22,6 +22,8 @@ import Position from "./assets/Position.png"
 import Season from "./assets/Season.png"
 import Status from "./assets/Status.png"
 import background2 from "./assets/background2.png"
+import Delete from "./assets/Delete.png"
+import Upload from "./assets/Upload.png"
 
 const images = {
     logo: logo,
@@ -47,7 +49,9 @@ const images = {
     Position: Position,
     Season: Season,
     Status: Status,
-    background2: background2
+    background2: background2,
+    Delete: Delete,
+    Upload: Upload
 };
 
 export default images;

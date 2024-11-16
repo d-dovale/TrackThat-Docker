@@ -14,7 +14,7 @@ function Sidebar() {
         <div className={styles.sidebar}>
             <div className={styles["profile-section"]}>
                 <img src={images.userIcon} alt="User" className={styles["profile-pic"]} />
-                <span>Name</span>
+                <span>John Doe</span>
             </div>
             <div className={styles["sidebar-links"]}>
                 <div

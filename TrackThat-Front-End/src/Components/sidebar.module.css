@@ -1,5 +1,5 @@
 .sidebar {
-    width: 300px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,15 +44,15 @@
     align-items: center;
     padding: 15px 20px;
     cursor: pointer;
-    color: #FFF; /* White color for text */
-    font-size: 24px; /* Larger font size for visibility */
-    font-weight: 700; /* Bold font weight */
+    color: #FFF; 
+    font-size: 24px; 
+    font-weight: 700; 
     transition: background 0.3s, color 0.3s;
     margin-bottom: 10px;
 }
 
 .sidebar-link:hover, .sidebar-link.active {
-    background-color: #291455; /* Highlight color for active or hovered links */
+    background-color: #291455; 
     color: white;
 }
 
@@ -64,7 +64,31 @@
 
 /* Make the Overview link initially active */
 .sidebar-link.active {
-    background-color: #1d0c44; /* Dark purple for active state */
-    border-left: 4px solid #3f1685; /* Purple border to indicate the active state */
+    background-color: #1d0c44; 
+    border-left: 4px solid #3f1685; 
     color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #462F4C;
+        padding-bottom: 20px;
+    }
+
+    .profile-pic {
+        width: 80px;  /* Smaller profile picture */
+        height: 80px;
+    }
+
+    .sidebar-link {
+        font-size: 18px;  /* Smaller font size */
+        padding: 10px 15px;
+    }
+
+    .sidebar-link .icon {
+        width: 25px;  /* Smaller icon size */
+    }
 }

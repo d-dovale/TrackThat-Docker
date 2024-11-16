@@ -1,0 +1,124 @@
+.settings-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    color: #fff; 
+    overflow-y: auto; 
+    max-height: 85vh; 
+}
+
+.settings-header-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: -10px;
+    margin-top: -30px;
+}
+
+.settings-icon {
+    width: 40px;
+}
+
+.settings-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+}
+
+.settings-profile-section {
+    border: 2px solid #462F4C;
+    padding: 20px;
+    border-radius: 8px;
+    width: 98%;
+    margin: auto;
+    display: flex;
+}
+
+.settings-info-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.settings-account-info, .settings-preferences {
+    border: 2px solid #462F4C;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1; 
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.settings-subtitle {
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 10px;
+}
+
+.settings-user-avatar {
+    width: 80px; 
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.settings-upload-button{
+    background-color: #462F4C; 
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    min-width: 175px;
+    align-items: center;
+    gap: 10px;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 5px;
+}
+
+.settings-remove-button{
+    background-color: #8B3131; 
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    min-width: 160px;
+    align-items: center;
+    gap: 10px;
+    font-family: "Montserrat", sans-serif;
+
+}
+
+.settings-upload-button img, .settings-remove-button img {
+    width: 24px; 
+    height: 24px;
+}
+
+.settings-input-field {
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #462F4C;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: flex;
+    width: 95%;
+    font-family: "Montserrat", serif;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.settings-submit-button {
+    padding: 8px 16px;
+    background-color: #462F4C; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
