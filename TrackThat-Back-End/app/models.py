@@ -12,18 +12,13 @@ class User(UserBase, table=True):
 
     applications : list["Application"] = Relationship(back_populates="user")
 
-class Status(Enum):
-    ON_GOING = 0
-    ACCEPTED = 1
-    REJECTED = 2
-
-
 class ApplicationBase(SQLModel):
     company : str = Field(index=True)
     position : str | None
     description : str | None
     link : str | None
-    status : int = Field(index=True, default=Status.ON_GOING)
+    season : str = Field(index = True)
+    status : str = Field(index=True, default="Pending")
     date : datetime.date = Field(index=True)
 
 class Application(ApplicationBase, table=True):

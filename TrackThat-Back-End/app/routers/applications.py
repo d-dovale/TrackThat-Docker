@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, Body, Path, status
-from typing import Annotated
+from typing import Annotated, Sequence
 from sqlmodel import col, desc, select
 from app.dependencies import SessionDep, get_current_user_id # Interface to database
-from app.models import Application, User, Status
+from app.models import Application, User
 from pydantic import AnyUrl, BaseModel
 import datetime
 
@@ -18,7 +18,8 @@ class ApplicationIn(BaseModel):
     position : str | None
     description : str | None
     link : AnyUrl | str | None 
-    status : int = Status.ON_GOING.value
+    season : str
+    status : str | None
     date : datetime.date
 
 class ApplicationUpdate(BaseModel):
@@ -26,7 +27,8 @@ class ApplicationUpdate(BaseModel):
     position : str | None
     description : str | None
     link : AnyUrl | str | None
-    status : int | None
+    season : str
+    status : str | None
 
 @router.get("/", status_code=status.HTTP_200_OK) # get_all was redundant in the presence of skip and limit. 
 async def get_all_apps(
@@ -35,7 +37,7 @@ async def get_all_apps(
     sort : Annotated[bool, Query()] = False,
     skip : Annotated[int, Query()] = 0, 
     limit : Annotated[int, Query()] = 20, 
-):
+) -> Sequence[Application]:
     if sort:
         return session.exec(select(Application).where(col(Application.user_id) == user_id).offset(skip).limit(limit).order_by(desc(Application.date))).all()
     return session.exec(select(Application).where(col(Application.user_id) == user_id).offset(skip).limit(limit)).all()
@@ -55,7 +57,7 @@ async def create_application(session : SessionDep, user_id : Annotated[int, Depe
 
 
 @router.get("/{application_id}", status_code=status.HTTP_200_OK)
-async def get_application(session : SessionDep, user_id : Annotated[int, Depends(get_current_user_id)], application_id : Annotated[int, Path()]):
+async def get_application(session : SessionDep, user_id : Annotated[int, Depends(get_current_user_id)], application_id : Annotated[int, Path()]) -> Application:
     app = session.exec(select(Application).where(col(Application.id) == application_id)).first()
     if app is None: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Application with {application_id} does not exist.")
@@ -64,7 +66,7 @@ async def get_application(session : SessionDep, user_id : Annotated[int, Depends
     return app
 
 @router.patch("/{application_id}", status_code=status.HTTP_201_CREATED)
-async def edit_application(session : SessionDep, user_id : Annotated[int, Depends(get_current_user_id)], application_id : Annotated[int, Path()], updated_application : Annotated[ApplicationUpdate, Body()]):
+async def edit_application(session : SessionDep, user_id : Annotated[int, Depends(get_current_user_id)], application_id : Annotated[int, Path()], updated_application : Annotated[ApplicationUpdate, Body()]) -> Application:
     app = session.exec(select(Application).where(col(Application.id) == application_id)).first()
     if app is None: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Application with {application_id} does not exist.")

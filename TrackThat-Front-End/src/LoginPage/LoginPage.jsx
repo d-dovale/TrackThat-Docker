@@ -1,30 +1,37 @@
-import React, { useState } from 'react';
-import styles from './LoginPage.module.css'; // Updated import for CSS Modules
-import Logo from '../Components/logo';
-import images from '../images'; // Adjust the path as necessary
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import styles from "./LoginPage.module.css"; // Updated import for CSS Modules
+import Logo from "../Components/logo";
+import images from "../images"; // Adjust the path as necessary
+import { useNavigate } from "react-router-dom";
+import { LOGINURL } from "../../constants";
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleCloseClick = () => {
-    navigate('/'); // Navigate back to the Landing Page
+    navigate("/"); // Navigate back to the Landing Page
   };
 
   const loginRequest = async () => {
     try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
+      const res = await fetch(LOGINURL, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
+      if (res.status !== 200) {
+        throw new Error(
+          `Login Unsuccessful: password or email are incorrect. Status ${res.status}`
+        );
+      }
       const data = await res.json();
-      localStorage.setItem('token', data.access_token);
-      navigate('/dashboard/overview');
+      console.log(data);
+      localStorage.setItem("token", data.access_token);
+      navigate("/dashboard/overview");
     } catch (e) {
       alert(`Failed: ${e.message}`);
     }
@@ -34,7 +41,11 @@ function LoginPage() {
     <div className={styles.signinContainer}>
       <Logo />
       <div className={styles.closeIcon} onClick={handleCloseClick}>
-        <img src={images.close} alt="Close Icon" className={styles.closeIconImage} />
+        <img
+          src={images.close}
+          alt="Close Icon"
+          className={styles.closeIconImage}
+        />
       </div>
       <div className={styles.signinBox}>
         <div className={styles.signinForm}>
@@ -69,10 +80,10 @@ function LoginPage() {
         </div>
         <div className={styles.registerBoxWrapper}>
           <div className={styles.registerBox}>
-            New to trackthat?{' '}
+            New to trackthat?{" "}
             <span
               className={styles.createAccountLink}
-              onClick={() => navigate('/register')}
+              onClick={() => navigate("/register")}
             >
               Create an account
             </span>
