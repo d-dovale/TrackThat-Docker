@@ -15,11 +15,11 @@ router = APIRouter(
 
 class ApplicationIn(BaseModel):
     company : str
-    position : str | None
-    description : str | None
-    link : AnyUrl | str | None 
+    position : str | None = None
+    description : str | None = ""
+    link : str | None = ""
     season : str
-    status : str | None
+    status : str | None = None
     date : datetime.date
 
 class ApplicationUpdate(BaseModel):

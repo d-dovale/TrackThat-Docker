@@ -20,12 +20,13 @@ function Viewapp() {
     setModalOpen(false);
   };
   const handleSubmitForm = () => {
+    console.log("Called", newAppAdded)
     handleCloseModal();
     setNewAppAdded(true);
+    console.log("After", newAppAdded)
   };
 
   useEffect(() => {
-    console.log("Effect")
     if (newAppAdded) {
       const token = localStorage.getItem("token");
 
@@ -42,7 +43,7 @@ function Viewapp() {
             },
           });
           const data = await res.json();
-          console.log(data);
+          console.log("User's Applications: ", data);
           setApplications(data);
         } catch (error) {
           console.error("Error fetching data:", error);

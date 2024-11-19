@@ -20,7 +20,6 @@ function PrivateRoute({ children }) {
     alert("Need to be logged in to access Dashboard.");
   }
   // Need to add a FA dialogue to indicate user is signed out.
-  console.log("Dashboard");
 
   // don't forget to remove this when finish
   const isDevelopment = false; // Set this to `true` during development to bypass authentication

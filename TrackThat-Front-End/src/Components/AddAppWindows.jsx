@@ -29,7 +29,7 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ company, position, season, status, date, "link" : "", "description" : "" }),
+      body: JSON.stringify({ company, position, season, status, date}),
     });
     if (res.status !== 201) {
       throw new Error(
@@ -37,7 +37,7 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
       );
     }
     const data = await res.json();
-    console.log(data);
+    console.log("New Application: ", data);
   };
 
   const onSubmit = async (e) => {
