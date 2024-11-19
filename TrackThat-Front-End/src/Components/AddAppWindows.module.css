@@ -6,9 +6,9 @@
 }
 .icon-small {
     vertical-align: middle;
-    width: 20px;   /* Adjust size as necessary */
+    width: 20px;   
     height: auto;
-    margin-right: 5px; /* Space before the label */
+    margin-right: 5px; 
 }
 
 .modal-header {
@@ -51,7 +51,7 @@
     background-color: #301934; 
     padding: 25px; 
     border-radius: 20px; 
-    width: 480px; 
+    width: 100%; 
     max-width: 480px; 
     display: flex;
     flex-direction: column;
@@ -105,14 +105,53 @@
     border: none;
     border-radius: 15px;
     min-width: 200px;
-    width: auto;
+    width: 50%; 
     cursor: pointer;
     font-family: "Montserrat", serif;
     font-weight: bold;
     font-size: 22px;
-    margin-left: 30%; /* Manually make the button align center */
+    margin-top: 20px; 
 }
 
 .submit-btn:hover {
     background-color: #805EAA;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        padding: 15px;
+    }
+
+    .form-group label,
+    .form-group input,
+    .form-group select {
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        max-width: 90%;
+    }
+
+    .form-group label,
+    .form-group input,
+    .form-group select {
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+        padding: 8px 16px;
+        width: 60%;
+    }
+
+    .modal-close-btn {
+        font-size: 20px;
+    }
 }
