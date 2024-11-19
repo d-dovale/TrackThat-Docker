@@ -20,10 +20,8 @@ function Viewapp() {
     setModalOpen(false);
   };
   const handleSubmitForm = () => {
-    console.log("Called", newAppAdded)
     handleCloseModal();
     setNewAppAdded(true);
-    console.log("After", newAppAdded)
   };
 
   useEffect(() => {
@@ -50,7 +48,7 @@ function Viewapp() {
         }
       };
 
-      setNewAppAdded((curr) => !curr);
+      setNewAppAdded(false);
       // Call the async function
       fetchData();
     }

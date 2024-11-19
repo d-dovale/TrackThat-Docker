@@ -10,10 +10,6 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
   const [season, setSeason] = useState("Summer");
   const [status, setStatus] = useState("Pending");
 
-  useEffect(() => {
-    console.log({ company, position, date, season, status });
-  }, [company, position, date, season, status]);
-
   if (!show) return null;
 
   const addApplicationRequest = async () => {
