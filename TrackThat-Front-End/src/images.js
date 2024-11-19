@@ -21,7 +21,7 @@ import Company from "./assets/Company.png"
 import Position from "./assets/Position.png"
 import Season from "./assets/Season.png"
 import Status from "./assets/Status.png"
-import background2 from "./assets/background2.png"
+import background2 from "./assets/Background_Dashboard.png"
 import Delete from "./assets/Delete.png"
 import Upload from "./assets/Upload.png"
 
