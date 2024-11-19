@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../Components/navbar";
@@ -9,6 +9,9 @@ import styles from "./Settings.module.css";
 
 function Settings(){
     const navigate = useNavigate();
+
+    const [name, setName] = useState("John Doe");
+    const [email, setEmail] = useState("johndoe@gmail.com");
 
 
     return (
@@ -34,9 +37,9 @@ function Settings(){
                     <h2 className={styles["settings-subtitle"]}>Account Info</h2>
                     <form>
                         <label>Name</label>
-                        <input className={styles["settings-input-field"]} type="text" value="John Doe" readOnly />
+                        <input className={styles["settings-input-field"]} type="text" value={name} onChange={e => setName(e.target.value)} />
                         <label>Email</label>
-                        <input className={styles["settings-input-field"]} type="email" value="johndoe@gmail.com" readOnly />
+                        <input className={styles["settings-input-field"]} type="email" value={email} onChange={e => setEmail(e.target.value)} />
                         <label>Current Password</label>
                         <input className={styles["settings-input-field"]} type="password" />
                         <label>New Password</label>
