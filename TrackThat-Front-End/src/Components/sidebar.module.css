@@ -1,3 +1,17 @@
+:global(html, body) {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; */ /* Ensure scrolling is enabled as per previous discussion */
+    font-family: 'Montserrat', sans-serif;
+    /* Ensure proper rendering and touch zooming */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+
+
 .sidebar {
     max-width: 300px;
     display: flex;
@@ -8,6 +22,7 @@
     font-family: 'Montserrat', sans-serif;
     border-right: 2px solid #462F4C;
     background-color: rgba(0, 0, 0, 0.3);
+    transition: max-width 0.3s ease;
 }
 
 
@@ -68,26 +83,40 @@
     color: white;
 }
 
-/* Responsive adjustments */
+
+
 @media (max-width: 768px) {
     .sidebar {
-        max-width: 100%;
+        max-width: 80px; /* Adjust sidebar width to fit only icons */
         border-right: none;
         border-bottom: 2px solid #462F4C;
+        border-right: 2px solid #462F4C;
         padding-bottom: 20px;
+        align-items: center; /* Center icons */
     }
 
     .profile-pic {
-        width: 80px;  /* Smaller profile picture */
-        height: 80px;
+        width: 60px;  /* Smaller profile picture */
+        height: 60px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .profile-section span {
+        display: none; /* Hide profile name */
     }
 
     .sidebar-link {
-        font-size: 18px;  /* Smaller font size */
-        padding: 10px 15px;
+        justify-content: center; /* Center icons within links */
+        padding: 10px 0; /* Reduce padding */
     }
 
     .sidebar-link .icon {
-        width: 25px;  /* Smaller icon size */
+        margin-right: 0; /* Remove right margin */
+        width: 30px; /* Slightly smaller icons */
+    }
+
+    .link-text {
+        display: none; /* Hide the link text */
     }
 }

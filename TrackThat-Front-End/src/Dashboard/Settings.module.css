@@ -3,11 +3,17 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrolling */
+    /* overflow: hidden; */
     font-family: 'Montserrat', sans-serif;
     /* Ensure proper rendering and touch zooming */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 .settings-main-container {
@@ -16,7 +22,7 @@
     gap: 20px;
     padding: 20px;
     color: #fff; 
-    /* overflow-y: auto;   */
+    overflow-y: auto;
     max-height: 85vh; 
 }
 
@@ -52,12 +58,13 @@
 
 
 .settings-info-container {
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     gap: 10px;
 }
 
-.settings-account-info, .settings-preferences {
+.settings-account-info{
     border: 2px solid #462F4C;
     padding: 15px;
     border-radius: 8px;
@@ -80,34 +87,28 @@
     margin-bottom: 10px;
 }
 
-.settings-upload-button{
-    background-color: #462F4C; 
-    border-radius: 10px;
+.settings-upload-button,
+.settings-remove-button {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     color: white;
     display: flex;
-    min-width: 175px;
     align-items: center;
     gap: 10px;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 5px;
+    flex: 1; /* Allows both buttons to take equal width */
+    border-radius: 8px; /* Unified border radius */
 }
 
-.settings-remove-button{
-    background-color: #8B3131; 
-    border-radius: 8px;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    min-width: 160px;
-    align-items: center;
-    gap: 10px;
-    font-family: "Montserrat", sans-serif;
+/* Specific background colors for each button */
+.settings-upload-button {
+    background-color: #462F4C;
+}
 
+.settings-remove-button {
+    background-color: #8B3131;
 }
 
 .settings-upload-button img, .settings-remove-button img {
@@ -145,7 +146,7 @@
         width: 100%;
     }
 
-    .settings-account-info, .settings-preferences {
+    .settings-account-info{
         width: 100%;
         margin-top: 10px;
     }

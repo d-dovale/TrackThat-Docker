@@ -21,19 +21,22 @@ function Sidebar() {
                     className={`${styles["sidebar-link"]} ${isActive("/dashboard/overview") ? styles.active : ""}`}
                     onClick={() => navigate("/dashboard/overview")}
                 >
-                    <img src={images.graphIcon} alt="Overview Icon" className={styles.icon} /> Overview
+                    <img src={images.graphIcon} alt="Overview Icon" className={styles.icon} />
+                    <span className={styles["link-text"]}>Overview</span>
                 </div>
                 <div
                     className={`${styles["sidebar-link"]} ${isActive("/dashboard/viewapp") ? styles.active : ""}`}
                     onClick={() => navigate("/dashboard/viewapp")}
                 >
-                    <img src={images.searchIcon} alt="View Applications Icon" className={styles.icon} /> View Applications
+                    <img src={images.searchIcon} alt="View Applications Icon" className={styles.icon} />
+                    <span className={styles["link-text"]}>View Applications</span>
                 </div>
                 <div
                     className={`${styles["sidebar-link"]} ${isActive("/dashboard/settings") ? styles.active : ""}`}
                     onClick={() => navigate("/dashboard/settings")}
                 >
-                    <img src={images.settingsIcon} alt="Settings Icon" className={styles.icon} /> Settings
+                    <img src={images.settingsIcon} alt="Settings Icon" className={styles.icon} />
+                    <span className={styles["link-text"]}>Settings</span>
                 </div>
             </div>
         </div>
