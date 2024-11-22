@@ -24,6 +24,7 @@ import Status from "./assets/Status.png"
 import background2 from "./assets/Background_Dashboard.png"
 import Delete from "./assets/Delete.png"
 import Upload from "./assets/Upload.png"
+import Edit from "./assets/Edit.png"
 
 const images = {
     logo: logo,
@@ -51,7 +52,8 @@ const images = {
     Status: Status,
     background2: background2,
     Delete: Delete,
-    Upload: Upload
+    Upload: Upload,
+    Edit: Edit
 };
 
 export default images;

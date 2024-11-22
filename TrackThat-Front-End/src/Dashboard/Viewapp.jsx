@@ -2,26 +2,40 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../Components/navbar";
-import AddAppWindows from "../Components/AddAppWindows"; // Import the component, not the CSS file
+import AddAppWindows from "../Components/AddAppWindows"; 
+import EditAppWindows from "../Components/EditAppWindows";
+import EditButton from "../Components/EditButton";
 import images from "../images";
 import styles from "./Dashboard.module.css";
 import { APPLICATIONSURL } from "../../constants";
 
 function Viewapp() {
   const navigate = useNavigate();
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isAddModalOpen, setAddModalOpen] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [newAppAdded, setNewAppAdded] = useState(true);
   const [applications, setApplications] = useState([]);
+  const [selectedApp, setSelectedApp] = useState(null); 
+
 
   const handleAddApplicationClick = () => {
-    setModalOpen(true);
+    setAddModalOpen(true);
   };
-  const handleCloseModal = () => {
-    setModalOpen(false);
+  const handleCloseAddModal = () => {
+    setAddModalOpen(false);
   };
+
   const handleSubmitForm = () => {
     handleCloseModal();
     setNewAppAdded(true);
+  };
+
+  const handleEditButtonClick = () => {
+    setEditModalOpen(true);
+  };
+  const handleCloseEditModal = () => {
+    setEditModalOpen(false);
+    setSelectedApp(null);
   };
 
   useEffect(() => {
@@ -70,6 +84,14 @@ function Viewapp() {
             onChange={(e) => console.log("Searching for:", e.target.value)}
           />
         </div>
+
+        {/* testing right now */}
+        <EditButton 
+          onClick={handleEditButtonClick} 
+          label="Edit Application" 
+        />
+
+
         <button
           className={styles["add-button"]}
           onClick={handleAddApplicationClick}
@@ -81,11 +103,18 @@ function Viewapp() {
           />
           Add Application
         </button>
+
       </div>
+
       <AddAppWindows
-        show={isModalOpen}
-        onClose={handleCloseModal}
+        show={isAddModalOpen}
+        onClose={handleCloseAddModal}
         onSuccessfulSubmit={handleSubmitForm}
+      />
+      
+      <EditAppWindows
+        show={isEditModalOpen}
+        onClose={handleCloseEditModal}
       />
     </div>
   );
