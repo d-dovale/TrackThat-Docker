@@ -1,3 +1,15 @@
+:global(html, body) {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Montserrat', sans-serif;
+    /* Ensure proper rendering and touch zooming */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
 .settings-main-container {
     display: flex;
     flex-direction: column;

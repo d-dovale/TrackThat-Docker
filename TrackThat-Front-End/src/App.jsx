@@ -22,7 +22,7 @@ function PrivateRoute({ children }) {
   // Need to add a FA dialogue to indicate user is signed out.
 
   // don't forget to remove this when finish
-  const isDevelopment = false; // Set this to `true` during development to bypass authentication
+  const isDevelopment = true; // Set this to `true` during development to bypass authentication
   if (isDevelopment) {
     return children;
   }

@@ -49,20 +49,6 @@ function Settings(){
                         <button className={styles["settings-submit-button"]}>Update</button>
                     </form>
                 </div>
-                <div className={styles["settings-preferences"]}>
-                    <h2 className={styles["settings-subtitle"]}>Preferences</h2>
-                    <label>Career Stage</label>
-                    <input className={styles["settings-input-field"]} />
-                    <label>Preferred Job Type</label>
-                    <input className={styles["settings-input-field"]} />
-                    <label>Location Preferences</label>
-                    <input className={styles["settings-input-field"]} />
-                    <label>Fields of Interest</label>
-                    <input className={styles["settings-input-field"]} />
-                    <label>Skills/Technologies</label>
-                    <input className={styles["settings-input-field"]} />
-                    <button className={styles["settings-submit-button"]}>Update</button>
-                </div>
             </div>
         </div>
     );

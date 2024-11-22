@@ -30,12 +30,6 @@ function Sidebar() {
                     <img src={images.searchIcon} alt="View Applications Icon" className={styles.icon} /> View Applications
                 </div>
                 <div
-                    className={`${styles["sidebar-link"]} ${isActive("/dashboard/jobpost") ? styles.active : ""}`}
-                    onClick={() => navigate("/dashboard/jobpost")}
-                >
-                    <img src={images.jobIcon} alt="Job Postings Icon" className={styles.icon} /> Job Postings
-                </div>
-                <div
                     className={`${styles["sidebar-link"]} ${isActive("/dashboard/settings") ? styles.active : ""}`}
                     onClick={() => navigate("/dashboard/settings")}
                 >
