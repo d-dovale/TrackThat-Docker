@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../Components/navbar";
+import ApplicationEntry from "../Components/ApplicationEntry";
 import AddAppWindows from "../Components/AddAppWindows"; 
 import EditAppWindows from "../Components/EditAppWindows";
 import EditButton from "../Components/EditButton";
@@ -37,6 +38,9 @@ function Viewapp() {
     setEditModalOpen(false);
     setSelectedApp(null);
   };
+
+  const onEdit = (app) => {
+  }
 
   useEffect(() => {
     if (newAppAdded) {
@@ -119,13 +123,16 @@ function Viewapp() {
           <div></div>
           <div></div>
         </div>
-        <p></p>
+        <span></span> {/* Here goes the logo of the company, can add filler. */}
         <p>Company</p>
         <p>Position</p>
         <p>Status</p>
         <p>Date Applied</p>
         <p>Season</p>
-        <p></p>
+        <span></span>
+        {applications.map(app => {
+          return <ApplicationEntry application={app} onEdit={onEdit}/>
+        })}
       </div>
 
       <AddAppWindows

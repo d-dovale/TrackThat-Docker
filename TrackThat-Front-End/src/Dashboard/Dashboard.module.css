@@ -33,18 +33,21 @@
 }
 
 .viewapp-table{
-    position: relative;
     margin-top: 50px;
     width: 100%;
     height: 100%;
     display: grid;
     text-align: center;
     grid-template-columns: 1fr repeat(5, 4fr) 1fr;
-    font-size: 2rem; /* Change font size and font color */
+    grid-template-rows: auto auto;
+    font-size: 1rem; /* Change font size and font color */
+}
+
+.viewapp-table p{
+    margin: 0px;
 }
 
 .viewapp-table-lines{
-    z-index: 10;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -54,7 +57,7 @@
 
 .viewapp-table-lines div{
     height: 100%;
-    border-left: 2px solid grey;  /* Change color to match border of table */
+    border-left: 2px solid grey;  
 }
 
 .viewapp-table-lines div:first-child{

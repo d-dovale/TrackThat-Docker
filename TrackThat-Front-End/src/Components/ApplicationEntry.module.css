@@ -1,0 +1,4 @@
+.application-container{
+    grid-column: span 7;
+    height: 30px;
+}
