@@ -10,8 +10,8 @@ import styles from "./Settings.module.css";
 function Settings(){
     const navigate = useNavigate();
 
-    const [name, setName] = useState("John Doe");
-    const [email, setEmail] = useState("johndoe@gmail.com");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
 
 
     return (
