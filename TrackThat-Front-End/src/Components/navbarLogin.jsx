@@ -8,6 +8,8 @@ function NavbarLogin() {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("username")
     navigate("/login");
   };
 

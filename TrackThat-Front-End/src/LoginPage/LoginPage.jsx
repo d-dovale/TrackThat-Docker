@@ -31,6 +31,7 @@ function LoginPage() {
       const data = await res.json();
       console.log(data);
       localStorage.setItem("token", data.access_token);
+      localStorage.setItem("username", data.username)
       navigate("/dashboard/overview");
     } catch (e) {
       alert(`Failed: ${e.message}`);
