@@ -3,8 +3,7 @@ import styles from "./EditAppWindows.module.css";
 import images from "../images";
 import { APPLICATIONSURL } from "../../constants";
 
-function EditAppWindows({ show, onClose, application }) {
-
+function EditAppWindows({ show, onClose, onSuccessfulEdit, application }) {
   if (!show) return null; // Do not render the modal if 'show' is false
 
   const [company, setCompany] = useState(application.company);
@@ -12,6 +11,75 @@ function EditAppWindows({ show, onClose, application }) {
   const [date, setDate] = useState(application.date);
   const [season, setSeason] = useState(application.season);
   const [status, setStatus] = useState(application.status);
+
+  const editApplicationRequest = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      // User not authenticated. Show toast and navigate to sign up.
+      alert("Need to be logged in to post.");
+    }
+    const res = await fetch(`${APPLICATIONSURL}/${application.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ company, position, season, status, date }),
+    });
+    if (res.status !== 201) {
+      throw new Error(`Error, edit application unsuccessful ${res.status}`);
+    }
+    const data = await res.json();
+    console.log("Edit Application: ", data);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (company && position && date && season && season) {
+      try {
+        await editApplicationRequest();
+        onSuccessfulEdit();
+      } catch (e) {
+        console.log(e);
+        alert("Unsuccesful edit.");
+      }
+    } else {
+      alert("Need to provide all required values to post.");
+    }
+  };
+
+  const deleteApplicationRequest = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      // User not authenticated. Show toast and navigate to sign up.
+      alert("Need to be logged in to post.");
+    }
+    const res = await fetch(`${APPLICATIONSURL}/${application.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.status !== 200) {
+      throw new Error(`Error, delete application unsuccessful ${res.status}`);
+    }
+    const data = await res.json();
+    console.log("Delete Application: ", data);
+  };
+
+  const onDelete = async (e) => {
+    e.preventDefault();
+    try {
+      await deleteApplicationRequest();
+      onSuccessfulEdit();
+    } catch (e) {
+      console.log(e);
+      alert("Unsuccesful delete.");
+    }
+  };
 
   return (
     <div className={styles["edit-modal-backdrop"]}>
@@ -30,7 +98,7 @@ function EditAppWindows({ show, onClose, application }) {
           <span>Edit Application</span>
         </div>
 
-        <form className={styles["edit-form"]}>
+        <form onSubmit={onSubmit} className={styles["edit-form"]}>
           <div className={styles["edit-form-group"]}>
             <label htmlFor="edit-company">
               <img
@@ -46,7 +114,7 @@ function EditAppWindows({ show, onClose, application }) {
               required
               placeholder="Company Name"
               value={company}
-              onChange={e => setCompany(e.target.value)}
+              onChange={(e) => setCompany(e.target.value)}
             />
           </div>
           <div className={styles["edit-form-group"]}>
@@ -64,7 +132,7 @@ function EditAppWindows({ show, onClose, application }) {
               required
               placeholder="Job Position"
               value={position}
-              onChange={e => setPosition(e.target.value)}
+              onChange={(e) => setPosition(e.target.value)}
             />
           </div>
           <div className={styles["edit-form-group"]}>
@@ -82,7 +150,7 @@ function EditAppWindows({ show, onClose, application }) {
               name="date"
               required
               value={date}
-              onChange={e => setDate(e.target.value)}
+              onChange={(e) => setDate(e.target.value)}
             />
           </div>
           <div className={styles["edit-form-group"]}>
@@ -99,7 +167,7 @@ function EditAppWindows({ show, onClose, application }) {
               name="season"
               defaultValue="Summer"
               value={season}
-              onChange={e => setSeason(e.target.value)}
+              onChange={(e) => setSeason(e.target.value)}
             >
               <option value="Summer">Summer</option>
               <option value="Fall">Fall</option>
@@ -121,7 +189,7 @@ function EditAppWindows({ show, onClose, application }) {
               name="status"
               defaultValue="Pending"
               value={status}
-              onChange={e => setStatus(e.target.value)}
+              onChange={(e) => setStatus(e.target.value)}
             >
               <option value="Pending">Pending</option>
               <option value="Interview">Interview</option>
@@ -130,10 +198,14 @@ function EditAppWindows({ show, onClose, application }) {
           </div>
           {/* Action Buttons */}
           <div className={styles["edit-button-container"]}>
-            <button type="button" className={styles["edit-save-button"]}>
+            <button type="submit" className={styles["edit-save-button"]}>
               Save
             </button>
-            <button type="button" className={styles["edit-delete-button"]}>
+            <button
+              type="button"
+              className={styles["edit-delete-button"]}
+              onClick={onDelete}
+            >
               Delete
             </button>
           </div>

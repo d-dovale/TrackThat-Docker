@@ -24,11 +24,12 @@ class ApplicationIn(BaseModel):
 
 class ApplicationUpdate(BaseModel):
     company : str | None
-    position : str | None
-    description : str | None
-    link : AnyUrl | str | None
+    position : str | None = None
+    description : str | None = ""
+    link : AnyUrl | str | None = ""
     season : str
-    status : str | None
+    status : str | None = None
+    date : datetime.date
 
 @router.get("/", status_code=status.HTTP_200_OK) # get_all was redundant in the presence of skip and limit. 
 async def get_all_apps(
@@ -79,3 +80,13 @@ async def edit_application(session : SessionDep, user_id : Annotated[int, Depend
     session.commit()
     session.refresh(app)
     return app
+
+@router.delete("/{application_id}")
+async def delete_application(session : SessionDep, user_id : Annotated[int, Depends(get_current_user_id)], application_id : Annotated[int, Path()]):
+    app = session.exec(select(Application).where(col(Application.id) == application_id)).first()
+    if app is None: 
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Application with {application_id} does not exist.")
+    if app.user_id != user_id:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+    session.delete(app)
+    session.commit()

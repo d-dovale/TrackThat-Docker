@@ -16,7 +16,6 @@ function Viewapp() {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [newAppAdded, setNewAppAdded] = useState(true);
   const [applications, setApplications] = useState([]);
-  const [selectedApp, setSelectedApp] = useState(null);
   const [editApplication, setEditApplication] = useState(null);
 
   const handleAddApplicationClick = () => {
@@ -26,8 +25,12 @@ function Viewapp() {
     setAddModalOpen(false);
   };
 
+  const handleCloseEditModal = () => {
+    setEditModalOpen(false);
+  };
+
   const handleSubmitForm = () => {
-    handleCloseModal();
+    handleCloseAddModal();
     setNewAppAdded(true);
   };
 
@@ -35,9 +38,10 @@ function Viewapp() {
     setEditApplication(application)
     setEditModalOpen(true);
   };
-  const handleCloseEditModal = () => {
-    setEditModalOpen(false);
-    setSelectedApp(null);
+
+  const handleSubmitEditForm = () => {
+    handleCloseEditModal();
+    setNewAppAdded(true);
   };
 
   const onEdit = (app) => {};
@@ -128,7 +132,7 @@ function Viewapp() {
           <p>Season</p>
           <span></span>
           {applications.map((app) => {
-            return <ApplicationEntry application={app} onEditButtonClick={handleEditButtonClick} onEdit={onEdit} />;
+            return <ApplicationEntry key={app.id} application={app} onEditButtonClick={handleEditButtonClick} onEdit={onEdit} />;
           })}
         </div>
       </div>
@@ -139,7 +143,7 @@ function Viewapp() {
         onSuccessfulSubmit={handleSubmitForm}
       />
 
-      <EditAppWindows show={isEditModalOpen} onClose={handleCloseEditModal} application={editApplication} />
+      <EditAppWindows show={isEditModalOpen} onClose={handleCloseEditModal} onSuccessfulEdit={handleSubmitEditForm} application={editApplication} />
     </div>
   );
 }

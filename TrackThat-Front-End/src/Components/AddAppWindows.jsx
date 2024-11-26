@@ -29,7 +29,7 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
     });
     if (res.status !== 201) {
       throw new Error(
-        `User with credentials already exists, status ${res.status}`
+        `Error, add application unsuccessful ${res.status}`
       );
     }
     const data = await res.json();
@@ -43,7 +43,8 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
         await addApplicationRequest();
         onSuccessfulSubmit();
       } catch (e) {
-        alert("Unsuccesful add.");
+        console.log(e)
+        alert("Unsuccesful add.", e);
       }
     } else {
       alert("Need to provide all required values to post.");
