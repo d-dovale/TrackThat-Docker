@@ -37,6 +37,9 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 
+class EmailToken(Token):
+    username : str
+
 
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated="auto")
@@ -101,4 +104,4 @@ async def login_email(request_user : Annotated[UserInLogin, Body()], session : S
     access_token = create_access_token(
             data={"sub": f"{user.id}:{user.name}"}, expires_delta=access_token_expires
     )
-    return Token(access_token=access_token, token_type="bearer") 
+    return EmailToken(access_token=access_token, token_type="bearer", username=user.name) 
