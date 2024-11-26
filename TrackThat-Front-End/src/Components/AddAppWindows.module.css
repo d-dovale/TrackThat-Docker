@@ -1,37 +1,44 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", serif;
+}
+
 .icon {
     vertical-align: middle;
-    width: 25px;   
-    height: auto;  
-    margin-right: 8px; 
+    width: 25px;
+    height: auto;
+    margin-right: 8px;
 }
+
 .icon-small {
     vertical-align: middle;
-    width: 20px;   
+    width: 20px;
     height: auto;
-    margin-right: 5px; 
+    margin-right: 5px;
 }
 
 .modal-header {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     color: white;
-    font-size: 24px; 
-    margin-bottom: 30px;  
+    font-size: 24px;
+    margin-bottom: 30px;
     margin-left: 10px;
     font-family: "Montserrat", serif;
 }
 
 .modal-close-btn {
     position: absolute;
-    top: 10px; 
-    right: 10px; 
+    top: 10px;
+    right: 10px;
     border: none;
     background: none;
     cursor: pointer;
     color: white;
     margin-top: 10px;
 }
-
 
 .modal-backdrop {
     position: fixed;
@@ -47,37 +54,28 @@
 }
 
 .modal {
-    background-color: #301934; 
-    padding: 25px; 
-    border-radius: 20px; 
-    width: 100%; 
-    max-width: 480px; 
+    background-color: #301934;
+    padding: 25px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     position: relative;
-      
-}
-
-.modal-close-btn {
-    float: right;
-    border: none;
-    background: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
+    overflow-y: auto;
 }
 
 .form-group {
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
-    
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .form-group label {
-    color: white;
-    font-size: 18px; 
+    color: rgb(207, 207, 207);
+    font-size: 18px;
     margin-bottom: 5px;
     width: 100%;
     font-family: "Montserrat", serif;
@@ -87,13 +85,20 @@
 
 .form-group input,
 .form-group select {
-    width: 93%; 
-    padding: 15px; 
-    border-radius: 12px; 
-    border: 1px solid white; 
-    background-color: #462F4C; 
+    width: 93%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid white;
+    background-color: #462F4C;
+    color: white;
     font-family: "Montserrat", serif;
     margin-left: 10px;
+}
+
+.submit-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .submit-btn {
@@ -104,16 +109,22 @@
     border: none;
     border-radius: 15px;
     min-width: 200px;
-    width: 50%; 
+    width: 50%;
     cursor: pointer;
     font-family: "Montserrat", serif;
     font-weight: bold;
     font-size: 22px;
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 .submit-btn:hover {
-    background-color: #805EAA;
+    background-color: #382f38;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {

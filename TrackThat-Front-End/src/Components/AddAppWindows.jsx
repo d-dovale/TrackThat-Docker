@@ -150,9 +150,11 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
               <option value="Rejected">Rejected</option>
             </select>
           </div>
-          <button type="submit" className={styles["submit-btn"]}>
-            ADD
-          </button>
+          <div className={styles["submit-container"]}>
+            <button type="submit" className={styles["submit-btn"]}>
+              ADD
+            </button>
+          </div>
         </form>
       </div>
     </div>
