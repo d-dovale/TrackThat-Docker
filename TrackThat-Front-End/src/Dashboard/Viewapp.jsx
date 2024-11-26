@@ -17,6 +17,9 @@ function Viewapp() {
   const [newAppAdded, setNewAppAdded] = useState(true);
   const [applications, setApplications] = useState([]);
   const [editApplication, setEditApplication] = useState(null);
+  const [season, setSeason] = useState(0); // Ordering
+  const [status, setStatus] = useState(0); // Ordering
+  const [date, setDate] = useState(true); // Ordering
 
   const handleAddApplicationClick = () => {
     setAddModalOpen(true);
@@ -35,7 +38,7 @@ function Viewapp() {
   };
 
   const handleEditButtonClick = (application) => {
-    setEditApplication(application)
+    setEditApplication(application);
     setEditModalOpen(true);
   };
 
@@ -44,7 +47,59 @@ function Viewapp() {
     setNewAppAdded(true);
   };
 
-  const onEdit = (app) => {};
+  const sortByDate = (date) => {
+    const sorted = [...applications].sort((a, b) => {
+      // Convert the date strings to Date objects for comparison
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      // Sort in ascending order (earliest to latest)
+      return date ? dateA - dateB : dateB - dateA
+    });
+
+    setApplications(sorted);
+  };
+
+  useEffect(() => {
+    sortByDate(date);
+  }, [date]);
+
+  const sortBySeason = (season) => {
+    const seasonOrder = new Map([
+      ["Summer", season % 4],
+      ["Winter", (season + 1) % 4],
+      ["Fall", (season + 2) % 4],
+      ["Spring", (season + 3) % 4],
+    ]);
+
+    const sorted = [...applications].sort((a, b) => {
+      return seasonOrder.get(a.season) - seasonOrder.get(b.season);
+    });
+
+    setApplications(sorted);
+  };
+
+  useEffect(() => {
+    sortBySeason(season);
+  }, [season]);
+
+  const sortByStatus = (status) => {
+    const statusOrder = new Map([
+      ["Pending", status % 3],
+      ["Interview", (status + 1) % 3],
+      ["Rejected", (status + 2) % 3],
+    ]);
+
+    const sorted = [...applications].sort((a, b) => {
+      return statusOrder.get(a.status) - statusOrder.get(b.status);
+    });
+
+    setApplications(sorted);
+  };
+
+  useEffect(() => {
+    sortByStatus(status);
+  }, [status]);
 
   useEffect(() => {
     if (newAppAdded) {
@@ -97,9 +152,6 @@ function Viewapp() {
           />
         </div>
 
-        {/* testing right now */}
-        {/* <EditButton onClick={handleEditButtonClick} label="Edit Application" /> */}
-
         <button
           className={styles["add-button"]}
           onClick={handleAddApplicationClick}
@@ -123,16 +175,21 @@ function Viewapp() {
           <div></div>
         </div>
         <div className={styles["viewapp-table"]}>
-          <span></span>{" "}
-          {/* Here goes the logo of the company, can add filler. */}
+          <span></span>
           <p>Company</p>
           <p>Position</p>
-          <p>Status</p>
-          <p>Date Applied</p>
-          <p>Season</p>
+          <p onClick={() => setStatus((curr) => curr + 1)}>Status</p>
+          <p onClick={() => setDate(curr => !curr)}>Date Applied</p>
+          <p onClick={() => setSeason((curr) => curr + 1)}>Season</p>
           <span></span>
           {applications.map((app) => {
-            return <ApplicationEntry key={app.id} application={app} onEditButtonClick={handleEditButtonClick} onEdit={onEdit} />;
+            return (
+              <ApplicationEntry
+                key={app.id}
+                application={app}
+                onEditButtonClick={handleEditButtonClick}
+              />
+            );
           })}
         </div>
       </div>
@@ -143,7 +200,12 @@ function Viewapp() {
         onSuccessfulSubmit={handleSubmitForm}
       />
 
-      <EditAppWindows show={isEditModalOpen} onClose={handleCloseEditModal} onSuccessfulEdit={handleSubmitEditForm} application={editApplication} />
+      <EditAppWindows
+        show={isEditModalOpen}
+        onClose={handleCloseEditModal}
+        onSuccessfulEdit={handleSubmitEditForm}
+        application={editApplication}
+      />
     </div>
   );
 }
