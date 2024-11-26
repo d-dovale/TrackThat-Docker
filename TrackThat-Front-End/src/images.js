@@ -26,6 +26,7 @@ import Delete from "./assets/Delete.png"
 import Upload from "./assets/Upload.png"
 import Edit from "./assets/Edit.png"
 import Logout from "./assets/Logout.png"
+import Company2 from "./assets/Company2.png"
 
 const images = {
     logo: logo,
@@ -55,7 +56,8 @@ const images = {
     Delete: Delete,
     Upload: Upload,
     Edit: Edit,
-    Logout: Logout
+    Logout: Logout,
+    Company2: Company2
 };
 
 export default images;
