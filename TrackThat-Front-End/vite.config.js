@@ -9,4 +9,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    host: true, // Allow external access (e.g., from Docker)
+    port: 5173, // Match the exposed Docker port
+    watch: {
+      usePolling: true, // Enable polling for file changes in Docker
+    },
+  },
 });
