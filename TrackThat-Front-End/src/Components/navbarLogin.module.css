@@ -1,0 +1,88 @@
+/* src/components/Navbar.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2px solid #462F4C;
+    padding: 15px 30px 15px 30px;
+  }
+    
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  
+  .site-title {
+    font-size: 32px;
+    font-weight: bolder;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-button1-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #462F4C;
+    color: white;
+    font-size: 18px;
+    font-family: "Montserrat", serif;
+    padding: 10px 16px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-right: 25px;
+    margin-top: 5px;
+  }
+
+  .logout-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #8B3131;
+    color: white;
+    font-size: 18px;
+    font-family: "Montserrat", serif;
+    padding: 10px 16px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-right: 25px;
+    margin-top: 5px;
+  }
+  
+  .nav-button1-login:hover{
+    background-color: #53385b;
+  }
+  .logout-button:hover{
+    background-color: #b16666;
+  }
+  
+  .nav-button1-login img{
+    width: 20px;
+    margin-right: 10px;
+  }
+  .logout-button img{
+    width: 20px;
+    margin-right: 10px;
+  }
+  
+  .nav-button1-login:last-child {
+    margin-right: 0;
+  }
+    

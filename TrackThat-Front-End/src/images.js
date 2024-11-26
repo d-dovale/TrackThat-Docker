@@ -25,6 +25,7 @@ import background2 from "./assets/Background_Dashboard.png"
 import Delete from "./assets/Delete.png"
 import Upload from "./assets/Upload.png"
 import Edit from "./assets/Edit.png"
+import Logout from "./assets/Logout.png"
 
 const images = {
     logo: logo,
@@ -53,7 +54,8 @@ const images = {
     background2: background2,
     Delete: Delete,
     Upload: Upload,
-    Edit: Edit
+    Edit: Edit,
+    Logout: Logout
 };
 
 export default images;
