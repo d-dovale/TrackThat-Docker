@@ -16,7 +16,9 @@ function Viewapp() {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [newAppAdded, setNewAppAdded] = useState(true);
   const [applications, setApplications] = useState([]);
+  const [filteredApplications, setFilteredApplications] = useState([]);
   const [editApplication, setEditApplication] = useState(null);
+  const [search, setSearch] = useState("");
   const [season, setSeason] = useState(0); // Ordering
   const [status, setStatus] = useState(0); // Ordering
   const [date, setDate] = useState(true); // Ordering
@@ -46,6 +48,15 @@ function Viewapp() {
     handleCloseEditModal();
     setNewAppAdded(true);
   };
+
+  const filterBySearch = (search) => {
+    const filtered = applications.filter(app => app.company.toUpperCase().search(search.toUpperCase()) !== -1)
+    setFilteredApplications(filtered)
+  }
+
+  useEffect(() => {
+    filterBySearch(search)
+  }, [search, applications])
 
   const sortByDate = (date) => {
     const sorted = [...applications].sort((a, b) => {
@@ -148,7 +159,8 @@ function Viewapp() {
             type="text"
             placeholder="Search"
             className={styles["search-input"]}
-            onChange={(e) => console.log("Searching for:", e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 
@@ -182,7 +194,7 @@ function Viewapp() {
           <p onClick={() => setDate(curr => !curr)}>Date Applied</p>
           <p onClick={() => setSeason((curr) => curr + 1)}>Season</p>
           <span></span>
-          {applications.map((app) => {
+          {filteredApplications.map((app) => {
             return (
               <ApplicationEntry
                 key={app.id}
