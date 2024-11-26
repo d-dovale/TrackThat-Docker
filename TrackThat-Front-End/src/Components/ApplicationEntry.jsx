@@ -7,10 +7,10 @@ function ApplicationEntry({ application, onEditButtonClick }) {
   return (
     <div className={styles["application-container"]}>
       <div className={styles["company-icon"]}>
-        <img src={images.googleIcon} />
+        <img src={images.Company2} />
       </div>
-      <p>{application.position}</p>
       <p>{application.company}</p>
+      <p>{application.position}</p>
       <p>{application.status}</p>
       <p>{application.date}</p>
       <p>{application.season}</p>
