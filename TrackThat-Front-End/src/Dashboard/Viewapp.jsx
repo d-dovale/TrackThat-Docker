@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Navbar from "../Components/navbar";
 import ApplicationEntry from "../Components/ApplicationEntry";
-import AddAppWindows from "../Components/AddAppWindows"; 
+import AddAppWindows from "../Components/AddAppWindows";
 import EditAppWindows from "../Components/EditAppWindows";
 import EditButton from "../Components/EditButton";
 import images from "../images";
@@ -16,8 +16,8 @@ function Viewapp() {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [newAppAdded, setNewAppAdded] = useState(true);
   const [applications, setApplications] = useState([]);
-  const [selectedApp, setSelectedApp] = useState(null); 
-
+  const [selectedApp, setSelectedApp] = useState(null);
+  const [editApplication, setEditApplication] = useState(null);
 
   const handleAddApplicationClick = () => {
     setAddModalOpen(true);
@@ -31,7 +31,8 @@ function Viewapp() {
     setNewAppAdded(true);
   };
 
-  const handleEditButtonClick = () => {
+  const handleEditButtonClick = (application) => {
+    setEditApplication(application)
     setEditModalOpen(true);
   };
   const handleCloseEditModal = () => {
@@ -39,8 +40,7 @@ function Viewapp() {
     setSelectedApp(null);
   };
 
-  const onEdit = (app) => {
-  }
+  const onEdit = (app) => {};
 
   useEffect(() => {
     if (newAppAdded) {
@@ -58,9 +58,9 @@ function Viewapp() {
               Authorization: `Bearer ${token}`,
             },
           });
-          if(res.status == 401 && res.statusText == "Unauthorized"){
-            localStorage.removeItem("token")
-            navigate("/login")
+          if (res.status == 401 && res.statusText == "Unauthorized") {
+            localStorage.removeItem("token");
+            navigate("/login");
           }
           const data = await res.json();
           console.log("User's Applications: ", data);
@@ -94,11 +94,7 @@ function Viewapp() {
         </div>
 
         {/* testing right now */}
-        <EditButton 
-          onClick={handleEditButtonClick} 
-          label="Edit Application" 
-        />
-
+        {/* <EditButton onClick={handleEditButtonClick} label="Edit Application" /> */}
 
         <button
           className={styles["add-button"]}
@@ -111,9 +107,8 @@ function Viewapp() {
           />
           Add Application
         </button>
-
       </div>
-      <div className={styles["viewapp-table"]}>
+      <div className={styles["viewapp-table-container"]}>
         <div className={styles["viewapp-table-lines"]}>
           <div></div>
           <div></div>
@@ -123,16 +118,19 @@ function Viewapp() {
           <div></div>
           <div></div>
         </div>
-        <span></span> {/* Here goes the logo of the company, can add filler. */}
-        <p>Company</p>
-        <p>Position</p>
-        <p>Status</p>
-        <p>Date Applied</p>
-        <p>Season</p>
-        <span></span>
-        {applications.map(app => {
-          return <ApplicationEntry application={app} onEdit={onEdit}/>
-        })}
+        <div className={styles["viewapp-table"]}>
+          <span></span>{" "}
+          {/* Here goes the logo of the company, can add filler. */}
+          <p>Company</p>
+          <p>Position</p>
+          <p>Status</p>
+          <p>Date Applied</p>
+          <p>Season</p>
+          <span></span>
+          {applications.map((app) => {
+            return <ApplicationEntry application={app} onEditButtonClick={handleEditButtonClick} onEdit={onEdit} />;
+          })}
+        </div>
       </div>
 
       <AddAppWindows
@@ -140,11 +138,8 @@ function Viewapp() {
         onClose={handleCloseAddModal}
         onSuccessfulSubmit={handleSubmitForm}
       />
-      
-      <EditAppWindows
-        show={isEditModalOpen}
-        onClose={handleCloseEditModal}
-      />
+
+      <EditAppWindows show={isEditModalOpen} onClose={handleCloseEditModal} application={editApplication} />
     </div>
   );
 }

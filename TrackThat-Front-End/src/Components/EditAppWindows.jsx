@@ -3,8 +3,15 @@ import styles from "./EditAppWindows.module.css";
 import images from "../images";
 import { APPLICATIONSURL } from "../../constants";
 
-function EditAppWindows({ show, onClose }) {
+function EditAppWindows({ show, onClose, application }) {
+
   if (!show) return null; // Do not render the modal if 'show' is false
+
+  const [company, setCompany] = useState(application.company);
+  const [position, setPosition] = useState(application.position);
+  const [date, setDate] = useState(application.date);
+  const [season, setSeason] = useState(application.season);
+  const [status, setStatus] = useState(application.status);
 
   return (
     <div className={styles["edit-modal-backdrop"]}>
@@ -38,6 +45,8 @@ function EditAppWindows({ show, onClose }) {
               name="company"
               required
               placeholder="Company Name"
+              value={company}
+              onChange={e => setCompany(e.target.value)}
             />
           </div>
           <div className={styles["edit-form-group"]}>
@@ -54,6 +63,8 @@ function EditAppWindows({ show, onClose }) {
               name="position"
               required
               placeholder="Job Position"
+              value={position}
+              onChange={e => setPosition(e.target.value)}
             />
           </div>
           <div className={styles["edit-form-group"]}>
@@ -70,6 +81,8 @@ function EditAppWindows({ show, onClose }) {
               type="date"
               name="date"
               required
+              value={date}
+              onChange={e => setDate(e.target.value)}
             />
           </div>
           <div className={styles["edit-form-group"]}>
@@ -85,6 +98,8 @@ function EditAppWindows({ show, onClose }) {
               id="edit-season"
               name="season"
               defaultValue="Summer"
+              value={season}
+              onChange={e => setSeason(e.target.value)}
             >
               <option value="Summer">Summer</option>
               <option value="Fall">Fall</option>
@@ -105,6 +120,8 @@ function EditAppWindows({ show, onClose }) {
               id="edit-status"
               name="status"
               defaultValue="Pending"
+              value={status}
+              onChange={e => setStatus(e.target.value)}
             >
               <option value="Pending">Pending</option>
               <option value="Interview">Interview</option>
