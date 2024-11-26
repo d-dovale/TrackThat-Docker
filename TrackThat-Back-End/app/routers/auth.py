@@ -5,7 +5,7 @@ auth_scheme = OAuth2PasswordBearer("auth/login") # To avoid circular import
 # EXTRACT THIS TO ENV.
 SECRET_KEY = "0bff56c7b85f5df372caaddbded53979155d91485f4d2762469a28234c535e69"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 31 # I month
 
 from typing import Annotated
 from sqlmodel import select, col

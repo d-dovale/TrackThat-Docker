@@ -54,6 +54,10 @@ function Viewapp() {
               Authorization: `Bearer ${token}`,
             },
           });
+          if(res.status == 401 && res.statusText == "Unauthorized"){
+            localStorage.removeItem("token")
+            navigate("/login")
+          }
           const data = await res.json();
           console.log("User's Applications: ", data);
           setApplications(data);
@@ -104,6 +108,24 @@ function Viewapp() {
           Add Application
         </button>
 
+      </div>
+      <div className={styles["viewapp-table"]}>
+        <div className={styles["viewapp-table-lines"]}>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <p></p>
+        <p>Company</p>
+        <p>Position</p>
+        <p>Status</p>
+        <p>Date Applied</p>
+        <p>Season</p>
+        <p></p>
       </div>
 
       <AddAppWindows
