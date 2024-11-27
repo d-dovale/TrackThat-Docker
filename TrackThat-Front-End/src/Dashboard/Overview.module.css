@@ -34,7 +34,7 @@
 
 .layout-container {
     display: grid;
-    grid-template-columns: 1fr 300px; /* 1fr for the graph to take remaining space, 300px fixed for stats */
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
     gap: 20px;
     width: 100%;
     margin-bottom: 20px;
@@ -59,14 +59,19 @@
 }
 
 .total-number {
-    font-size: 3rem;
+    font-size: 5rem;
     font-weight: bold;
 }
 
 .status-details {
-    font-size: 1rem;
+    font-size: 2rem;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
+}
+.open-box-image{
+    margin-top: 60px;
+    width: 100px;
+    height: auto;
 }
 
 .info-row {
@@ -109,26 +114,25 @@ ul {
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .layout-container {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
     }
 
     .overview-graph,
     .total-applications {
-        grid-column: 1 / 2;
-        height: auto; 
+        grid-column: 1 / -1;
     }
 
     .overview-graph {
-        height: 300px; 
+        height: auto;
     }
 
     .info-row {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
     }
 
     .upcoming-date,
     .goal-status,
     .total-number {
-        font-size: 1.5rem; 
+        font-size: 1.5rem;
     }
 }

@@ -27,6 +27,7 @@ import Upload from "./assets/Upload.png"
 import Edit from "./assets/Edit.png"
 import Logout from "./assets/Logout.png"
 import Company2 from "./assets/Company2.png"
+import OpenBox from "./assets/OpenBox.png"
 
 const images = {
     logo: logo,
@@ -57,7 +58,8 @@ const images = {
     Upload: Upload,
     Edit: Edit,
     Logout: Logout,
-    Company2: Company2
+    Company2: Company2,
+    OpenBox: OpenBox
 };
 
 export default images;

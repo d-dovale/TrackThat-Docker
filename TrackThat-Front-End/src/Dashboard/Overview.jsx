@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/navbar";
 import images from "../images";
 import styles from "./Overview.module.css";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import 'chart.js/auto';
 
 
@@ -25,7 +25,7 @@ function Overview(){
         const mockData = [
             { id: 1, company: "Company A", position: "Engineer", season: "Winter", date: "2024-12-01", status: "Pending" },
             { id: 2, company: "Company B", position: "Manager", season: "Fall", date: "2024-11-29", status: "Interview" },
-            { id: 3, company: "Company C", position: "Analyst", season: "Spring", date: "2024-11-30", status: "Pending" },
+            { id: 3, company: "Company C", position: "Analyst", season: "Spring", date: "2024-11-30", status: "Rejected" },
             { id: 4, company: "Company D", position: "Intern", season: "Summer", date: "2024-11-28", status: "Pending" },
         ];
 
@@ -54,6 +54,7 @@ function Overview(){
     };
 
     const graphData = {
+        responsive: true,
         labels: ["Pending", "Interviews", "Rejected"],
         datasets: [
             {
@@ -62,23 +63,23 @@ function Overview(){
                     metrics.pending || 0, 
                     metrics.interview || 0, 
                     metrics.rejected || 0
-                ], // Ensures 0 is shown when no data
-                backgroundColor: ["#007bff", "#28a745", "#dc3545"],
-                borderColor: "#ffffff",
-                borderWidth: 2,
+                ], //0 is shown when no data
+                backgroundColor: ["#4E2A84", "#563C5C", "#493F5E"], //bars color
+                barPercentage: 0.6, //bar thickness
+                categoryPercentage: 0.8, //spacing between bars 
                 tension: 0,
             },
         ],
     };
 
     const graphOptions = {
-        responsive: true,  // Ensure this is true
+        responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: "top",
                 labels: {
-                    color: "#ffffff",
+                    color: "#ffffff", //text color
                 },
             },
         },
@@ -88,16 +89,16 @@ function Overview(){
                     display: false,
                 },
                 ticks: {
-                    color: "#ffffff",
+                    color: "#ffffff", 
                 },
             },
             y: {
-                beginAtZero: true, // Always start Y-axis at 0
+                beginAtZero: true,
                 grid: {
-                    color: "#ffffff",
+                    color: "#ffffff", //grid line color 
                 },
                 ticks: {
-                    color: "#ffffff",
+                    color: "#ffffff", //tick color 
                     precision: 0,
                     callback: (value) => Math.round(value),
                 },
@@ -115,7 +116,7 @@ function Overview(){
                 <div className={styles["overview-graph"]}>
                     <h2>Overview</h2>
                     <div style={{ width: 'auto', height: '100%'}}>
-                        <Line data={graphData} options={graphOptions} />
+                        <Bar data={graphData} options={graphOptions} />
                     </div>
                 </div>
 
@@ -124,9 +125,15 @@ function Overview(){
                     <h2>Total Applications</h2>
                     <p className={styles["total-number"]}>{metrics.total}</p>
                     <div className={styles["status-details"]}>
+                        <p><strong>Status</strong></p>
                         <p>Pending: {metrics.pending}</p>
                         <p>Interviews: {metrics.interview}</p>
                         <p>Rejected: {metrics.rejected}</p>
+                        <img
+                            src={images.OpenBox}
+                            alt="Open Box"
+                            className={styles["open-box-image"]}
+                        />
                     </div>
                 </div>
             </div>
