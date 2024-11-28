@@ -1,58 +1,71 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import './LandingStyles.css';
 import Navbar from "../Components/navbar";
 import images from "../images";
 
 function LandingPage() {
-  const navigate = useNavigate();  // Hook for navigation
+  const navigate = useNavigate();
 
   const handleTryNowClick = () => {
-    navigate("/register");  // Navigate to Register page on button click
+    navigate("/register");
   };
-  const handleLoginClick = () => {
-    navigate("/login");  // Navigate to Login page on button click
+
+  const springingWords = {
+    hidden: { opacity: 0, y: 50 }, // Start off invisible and below
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: "spring", stiffness: 120, damping: 20 }
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 1 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2 // Delay between each word animation
+      }
+    },
   };
 
   return (
-    <div className="landing-page">
-      <Navbar/>
-      <div className="content-container">
-        <h1 className="main-title">Track Your Path to Success</h1>
-        <p className="subtitle">Stay on top of your job applications with TrackThat, the ultimate tool for organizing and tracking your job search progress.</p>
-        <button className="try-now-button" onClick={handleTryNowClick}>Try Now</button>
-      </div>
+    <motion.div
+      className="landing-page"
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 1 }}
+    >
+      <Navbar />
+      
+      <motion.div className="content-container" variants={staggerContainer}>
+        <motion.h1 className="main-title" variants={springingWords}>
+          Track Your Path to Success
+        </motion.h1>
+        <motion.p className="subtitle" variants={springingWords}>
+          Stay on top of your job applications with TrackThat, the ultimate tool for organizing and tracking your job search progress.
+        </motion.p>
+        <motion.button className="try-now-button" onClick={handleTryNowClick} whileHover={{ scale: 1.1 }}>
+          Try Now
+        </motion.button>
+      </motion.div>
 
-      <div className="icon-container">
-        <img
-          src= {images.googleIcon}
-          alt="Google Icon"
-          className="icon"
-        />
-        <img
-          src={images.chatGPTIcon}
-          alt="ChatGPT Icon"
-          className="icon"
-        />
-        <img
-          src={images.youtubeIcon}
-          alt="YouTube Icon"
-          className="icon"
-        />
-        <img
-          src={images.twitterIcon}
-          alt="Twitter Icon"
-          className="icon"
-        />
-        <img
-          src={images.facebookIcon}
-          alt="Facebook Icon"
-          className="icon"
-        />
-      </div>
-    </div>
+      <motion.div
+        className="icon-container"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <img src={images.googleIcon} alt="Google Icon" className="icon" />
+        <img src={images.chatGPTIcon} alt="ChatGPT Icon" className="icon" />
+        <img src={images.youtubeIcon} alt="YouTube Icon" className="icon" />
+        <img src={images.twitterIcon} alt="Twitter Icon" className="icon" />
+        <img src={images.facebookIcon} alt="Facebook Icon" className="icon" />
+      </motion.div>
+    </motion.div>
   );
 }
-
 
 export default LandingPage;
