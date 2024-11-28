@@ -64,6 +64,7 @@
 }
 
 .viewapp-table{
+    color: #B7B7B7;
     width: 100%;
     display: grid;
     text-align: center;
@@ -80,10 +81,6 @@
     padding: 0px 20px 0px 20px;
     z-index: 10;
 }
-
-
-
-
 
 .viewapp-buttons {
     margin-top: 5px;

@@ -15,9 +15,15 @@ function Navbar() {
       navigate("/dashboard");
   }
 
+  const handleLogoClick = () => {
+    navigate("/");
+  }
+
   return (
     <header className={styles.header}>
-      <Logo />
+      <div className={styles["logo-container"]} onClick={handleLogoClick}>
+        <Logo />
+      </div>
       <div className={styles.nav}>
         <button className={styles["nav-button1"]} onClick={handleDashboardClick}>
           <img src={images.dashboardIcon} alt="Dashboard Icon" />
