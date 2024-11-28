@@ -188,11 +188,11 @@ function Viewapp() {
         </div>
         <div className={styles["viewapp-table"]}>
           <span></span>
-          <p>Company</p>
-          <p>Position</p>
-          <p onClick={() => setStatus((curr) => curr + 1)}>Status</p>
-          <p onClick={() => setDate(curr => !curr)}>Date Applied</p>
-          <p onClick={() => setSeason((curr) => curr + 1)}>Season</p>
+          <p>COMPANY</p>
+          <p>POSITION</p>
+          <p onClick={() => setStatus((curr) => curr + 1)}>STATUS</p>
+          <p onClick={() => setDate(curr => !curr)}>DATE APPLIED</p>
+          <p onClick={() => setSeason((curr) => curr + 1)}>SEASON</p>
           <span></span>
           {filteredApplications.map((app) => {
             return (
