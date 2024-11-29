@@ -73,7 +73,7 @@ function Overview() {
 
   const graphData = {
     responsive: true,
-    labels: ["Pending", "Interviews", "Rejected"],
+    labels: ["Pending", "Interviewing", "Rejected"],
     datasets: [
       {
         label: "Applications by Status",
