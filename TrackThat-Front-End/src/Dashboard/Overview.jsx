@@ -6,6 +6,7 @@ import Navbar from "../Components/navbar";
 import images from "../images";
 import styles from "./Overview.module.css";
 import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import "chart.js/auto";
 
 function Overview() {
@@ -16,6 +17,7 @@ function Overview() {
     pending: 0,
     interview: 0,
     rejected: 0,
+    offer: 0,
   });
   const [recentApplication, setRecentApplication] = useState(null);
   const [upcomingApplication, setUpcomingApplication] = useState(null);
@@ -62,8 +64,9 @@ function Overview() {
     const pending = data.filter((app) => app.status === "Pending").length;
     const interview = data.filter((app) => app.status === "Interview").length;
     const rejected = data.filter((app) => app.status === "Rejected").length;
+    const offers = data.filter((app) => app.status === "Offer").length;
 
-    setMetrics({ total, pending, interview, rejected });
+    setMetrics({ total, pending, interview, rejected, offers });
   };
 
   const formatDate = (dateString) => {
@@ -72,8 +75,7 @@ function Overview() {
   };
 
   const graphData = {
-    responsive: true,
-    labels: ["Pending", "Interviews", "Rejected"],
+    labels: ["Pending", "Rejected", "Interviews", "Offers"],
     datasets: [
       {
         label: "Applications by Status",
@@ -81,48 +83,26 @@ function Overview() {
           metrics.pending || 0,
           metrics.interview || 0,
           metrics.rejected || 0,
-        ], //0 is shown when no data
-        backgroundColor: ["#4E2A84", "#563C5C", "#493F5E"], //bars color
-        barPercentage: 0.6, //bar thickness
-        categoryPercentage: 0.8, //spacing between bars
-        tension: 0,
+          metrics.offers || 0,
+        ], // Show 0 when no data
+        backgroundColor: ["#4E2A84", "#563C5C", "#493F5E"], // Pie colors
+        hoverOffset: 10, // Space on hover
       },
     ],
   };
 
   const graphOptions = {
     responsive: true,
-    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",
         labels: {
-          color: "#ffffff", //text color
-        },
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          color: "#ffffff",
-        },
-      },
-      y: {
-        beginAtZero: true,
-        grid: {
-          color: "#ffffff", //grid line color
-        },
-        ticks: {
-          color: "#ffffff", //tick color
-          precision: 0,
-          callback: (value) => Math.round(value),
+          color: "#ffffff", // Text color
         },
       },
     },
   };
+  
 
   return (
     <div className={styles["overview-page"]}>
@@ -131,9 +111,8 @@ function Overview() {
       <div className={styles["layout-container"]}>
         {/* Graph Section */}
         <div className={styles["overview-graph"]}>
-          <h2>Overview</h2>
           <div style={{ width: "auto", height: "100%" }}>
-            <Bar data={graphData} options={graphOptions} />
+            <Pie data={graphData} options={graphOptions} />
           </div>
         </div>
 
@@ -148,6 +127,7 @@ function Overview() {
             <p>Pending: {metrics.pending}</p>
             <p>Interviews: {metrics.interview}</p>
             <p>Rejected: {metrics.rejected}</p>
+            <p>Offers: {metrics.offer}</p>
             <img
               src={images.OpenBox}
               alt="Open Box"

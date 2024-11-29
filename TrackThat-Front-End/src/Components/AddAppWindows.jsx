@@ -148,6 +148,7 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
               <option value="Pending">Pending</option>
               <option value="Interview">Interview</option>
               <option value="Rejected">Rejected</option>
+              <option value="Offer">Offer</option>
             </select>
           </div>
           <div className={styles["submit-container"]}>
