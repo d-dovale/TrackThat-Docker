@@ -4,9 +4,8 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
   font-family: 'Montserrat', sans-serif;
-  /* Ensure proper rendering and touch zooming */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
