@@ -26,7 +26,7 @@
   .overview-header {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
   
   /* Layout Container */
@@ -46,6 +46,11 @@
     border: 1px solid #462F4C;
     border-radius: 8px;
     box-sizing: border-box;
+  }
+  
+  /* Center the chart headings */
+  .overview-graph h2 {
+    text-align: center;
   }
   
   .overview-graph canvas {
@@ -98,7 +103,8 @@
     margin-bottom: 10px;
   }
   
-  p, li {
+  p,
+  li {
     font-size: 1rem;
     margin-bottom: 5px;
   }

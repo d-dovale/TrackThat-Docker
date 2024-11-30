@@ -18,7 +18,8 @@ function Overview() {
     rejected: 0,
     offers: 0,
   });
-  const [applicationsPerWeek, setApplicationsPerWeek] = useState([0, 0, 0, 0, 0]);
+  const [applicationsPerWeek, setApplicationsPerWeek] = useState([]);
+  const [weekLabels, setWeekLabels] = useState([]);
   const [recentApplication, setRecentApplication] = useState(null);
   const [upcomingApplication, setUpcomingApplication] = useState(null);
 
@@ -26,7 +27,9 @@ function Overview() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Need to be logged in to post.");
+      alert("Need to be logged in to view this page.");
+      navigate("/login");
+      return;
     }
 
     const fetchData = async () => {
@@ -36,15 +39,20 @@ function Overview() {
             Authorization: `Bearer ${token}`,
           },
         });
-        if (res.status == 401 && res.statusText == "Unauthorized") {
+        if (res.status === 401 && res.statusText === "Unauthorized") {
           localStorage.removeItem("token");
           navigate("/login");
+          return;
         }
         const data = await res.json();
         console.log("User's Applications: ", data);
         setApplications(data);
         calculateMetrics(data);
-        calculateApplicationsPerWeek(data);
+
+        const { applicationsPerWeek, weekLabels } = calculateApplicationsPerWeek(data);
+        setApplicationsPerWeek(applicationsPerWeek);
+        setWeekLabels(weekLabels);
+
         setRecentApplication(data[data.length - 1]);
         setUpcomingApplication(
           data
@@ -71,25 +79,63 @@ function Overview() {
 
   const calculateApplicationsPerWeek = (data) => {
     const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
+    const currentMonth = currentDate.getMonth(); // 0-11
     const currentYear = currentDate.getFullYear();
 
-    const weeks = [0, 0, 0, 0, 0];
+    const weeks = [];
+    const weekLabels = [];
 
+    // Get the first day of the current month
+    const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+    // Get the last day of the current month
+    const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
+
+    // Adjust weekStart to the Sunday on or before the first day of the month
+    let weekStart = new Date(firstDayOfMonth);
+    weekStart.setDate(weekStart.getDate() - weekStart.getDay()); // Move back to Sunday
+
+    // Loop until weekStart exceeds the last day of the month
+    while (weekStart <= lastDayOfMonth) {
+      let weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekEnd.getDate() + 6);
+
+      // Set times to include the entire day
+      weekStart.setHours(0, 0, 0, 0);
+      weekEnd.setHours(23, 59, 59, 999);
+
+      // Format week label
+      const startLabel = weekStart.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
+      const endLabel = weekEnd.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
+      weekLabels.push(`${startLabel}-${endLabel}`);
+
+      // Push week object
+      weeks.push({
+        start: new Date(weekStart),
+        end: new Date(weekEnd),
+        count: 0,
+      });
+
+      // Move to next week
+      weekStart.setDate(weekStart.getDate() + 7);
+    }
+
+    // Initialize applicationsPerWeek array
+    const applicationsPerWeek = new Array(weeks.length).fill(0);
+
+    // Count applications per week
     data.forEach((app) => {
       const appDate = new Date(app.date);
-      const appMonth = appDate.getMonth();
-      const appYear = appDate.getFullYear();
-
-      if (appMonth === currentMonth && appYear === currentYear) {
-        const day = appDate.getDate();
-        let weekNumber = Math.floor((day - 1) / 7);
-        if (weekNumber > 4) weekNumber = 4;
-        weeks[weekNumber] += 1;
+      if (appDate.getFullYear() === currentYear && appDate.getMonth() === currentMonth) {
+        for (let i = 0; i < weeks.length; i++) {
+          if (appDate >= weeks[i].start && appDate <= weeks[i].end) {
+            applicationsPerWeek[i] += 1;
+            break;
+          }
+        }
       }
     });
 
-    setApplicationsPerWeek(weeks);
+    return { applicationsPerWeek, weekLabels };
   };
 
   const formatDate = (dateString) => {
@@ -97,6 +143,14 @@ function Overview() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  // Get current month name
+  const currentDate = new Date();
+  const currentMonthName = currentDate.toLocaleString('default', { month: 'long' });
+
+  // Colors used in charts
+  const chartColors = ["#2F4F4F", "#556B2F", "#8B0000", "#191970"]; // Matte darker colors
+
+  // Updated colors for the charts
   const graphData = {
     labels: ["Pending", "Interviewing", "Rejected", "Offers"],
     datasets: [
@@ -108,7 +162,7 @@ function Overview() {
           metrics.rejected || 0,
           metrics.offers || 0,
         ],
-        backgroundColor: ["#4E2A84", "#563C5C", "#493F5E", "#6C5B7B"],
+        backgroundColor: chartColors, // Matte darker colors
         hoverOffset: 10,
       },
     ],
@@ -117,6 +171,14 @@ function Overview() {
   const graphOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: {
+        top: 20,
+        bottom: 30,
+        left: 10,
+        right: 10,
+      },
+    },
     plugins: {
       legend: {
         position: "top",
@@ -127,13 +189,16 @@ function Overview() {
     },
   };
 
+  // Generate bar colors for each week by cycling through chartColors
+  const barColors = weekLabels.map((_, index) => chartColors[index % chartColors.length]);
+
   const barChartData = {
-    labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"],
+    labels: weekLabels,
     datasets: [
       {
-        label: "Applications per Week",
+        label: `Applications in ${currentMonthName}`,
         data: applicationsPerWeek,
-        backgroundColor: "#4E2A84",
+        backgroundColor: barColors, // Use array of colors
       },
     ],
   };
@@ -141,10 +206,24 @@ function Overview() {
   const barChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: {
+        top: 20,
+        bottom: 30,
+        left: 10,
+        right: 10,
+      },
+    },
     scales: {
       x: {
         ticks: {
           color: "#ffffff",
+          autoSkip: false,
+          maxRotation: 0, // Set to 0 for horizontal labels
+          minRotation: 0, // Set to 0 for horizontal labels
+          font: {
+            size: 10, // Adjust font size if needed
+          },
         },
         grid: {
           display: false,
@@ -171,7 +250,7 @@ function Overview() {
 
   return (
     <div className={styles["overview-page"]}>
-      <h1 className={styles["overview-header"]}>Dashboard Overview</h1>
+      <h1 className={styles["overview-header"]}>Overview</h1>
 
       {/* Information Row */}
       <div className={styles["info-row"]}>
@@ -231,7 +310,7 @@ function Overview() {
 
         {/* Bar Chart Section */}
         <div className={styles["overview-graph"]}>
-          <h2>Applications per Week</h2>
+          <h2>Applications in {currentMonthName}</h2>
           <Bar data={barChartData} options={barChartOptions} />
         </div>
       </div>
