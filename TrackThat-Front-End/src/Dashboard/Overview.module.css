@@ -3,136 +3,130 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
     font-family: 'Montserrat', sans-serif;
-    /* Ensure proper rendering and touch zooming */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-}
-
-*,
-*::before,
-*::after {
+  }
+  
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
-}
-
-.overview-page {
+  }
+  
+  .overview-page {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     padding: 20px;
     width: 100%;
     height: 80vh;
     overflow: auto;
-}
-
-.overview-header {
+  }
+  
+  .overview-header {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
-}
-
-.layout-container {
+  }
+  
+  /* Layout Container */
+  .layout-container {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+    grid-template-columns: 1fr 1fr; /* Each chart takes up 50% */
     gap: 20px;
     width: 100%;
-    margin-bottom: 20px;
-}
-
-.overview-graph {
-    grid-column: 1 / 2;
-    padding: 20px;
-    max-height: 600px;
-    height: auto;
+    margin-top: 20px;
+  }
+  
+  /* Chart Containers */
+  .overview-graph {
+    padding: 30px;
     width: 100%;
+    height: 400px; /* Set a fixed height or adjust as needed */
     border: 1px solid #462F4C;
     border-radius: 8px;
-}
-
-.total-applications {
-    grid-column: 2 / 3;
-    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .overview-graph canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .total-applications {
+    padding: 30px;
     text-align: center;
     border: 1px solid #462F4C;
     border-radius: 8px;
-}
-
-.total-number {
+  }
+  
+  .total-number {
     font-size: 5rem;
     font-weight: bold;
-}
-
-.status-details {
+  }
+  
+  .status-details {
     font-size: 2rem;
     text-align: center;
     margin-top: 30px;
-}
-.open-box-image{
-    margin-top: 60px;
-    width: 100px;
-    height: auto;
-}
-
-.info-row {
+  }
+  
+  .info-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 100%;
-}
-
-.recent-added,
-.upcoming,
-.goal {
-    padding: 20px;
+  }
+  
+  .recent-added,
+  .total-applications,
+  .goal {
+    padding: 30px;
     border: 1px solid #462F4C;
     border-radius: 8px;
     text-align: center;
-}
-
-.upcoming-date,
-.goal-status {
+  }
+  
+  .upcoming-date,
+  .goal-status {
     font-size: 2rem;
     font-weight: bold;
-}
-
-h2 {
+  }
+  
+  h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-}
-
-p, li {
+  }
+  
+  p, li {
     font-size: 1rem;
     margin-bottom: 5px;
-}
-
-ul {
+  }
+  
+  ul {
     list-style: none;
     padding: 0;
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
     .layout-container {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
-
-    .overview-graph,
-    .total-applications {
-        grid-column: 1 / -1;
-    }
-
+  
     .overview-graph {
-        height: auto;
+      grid-column: 1 / -1;
+      height: auto;
     }
-
+  
     .info-row {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
-
+  
     .upcoming-date,
     .goal-status,
     .total-number {
-        font-size: 1.5rem;
+      font-size: 1.5rem;
     }
-}
+  }
+  
