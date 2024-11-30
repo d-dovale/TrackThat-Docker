@@ -7,6 +7,7 @@
     align-items: center;
     grid-template-columns: 1fr repeat(5, 4fr) 1fr;
     text-align: center;
+    color: white;
 }
 
 
@@ -14,10 +15,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-left: 10px;
 }
 
 .company-icon img{
-    height: 50px;
+    height: 35px;
 }
 
 .edit-button-container{

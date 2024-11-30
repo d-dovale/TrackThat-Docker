@@ -5,6 +5,7 @@ html, body {
     padding: 0;
     overflow: auto;
     font-family: 'Montserrat', sans-serif;
+    background-color: #2D1E45;
 }
 
 .landing-page {
@@ -21,7 +22,7 @@ html, body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: white;
+    color: #2D1E45;
 }
 
 .content-container {
