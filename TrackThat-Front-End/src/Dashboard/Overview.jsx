@@ -15,9 +15,9 @@ function Overview() {
   const [metrics, setMetrics] = useState({
     total: 0,
     pending: 0,
-    interview: 0,
+    interviewing: 0,
     rejected: 0,
-    offer: 0,
+    offers: 0,
   });
   const [recentApplication, setRecentApplication] = useState(null);
   const [upcomingApplication, setUpcomingApplication] = useState(null);
@@ -62,11 +62,11 @@ function Overview() {
   const calculateMetrics = (data) => {
     const total = data.length;
     const pending = data.filter((app) => app.status === "Pending").length;
-    const interview = data.filter((app) => app.status === "Interview").length;
+    const interviewing = data.filter((app) => app.status === "Interviewing").length;
     const rejected = data.filter((app) => app.status === "Rejected").length;
-    const offers = data.filter((app) => app.status === "Offer").length;
+    const offers = data.filter((app) => app.status === "Offers").length;
 
-    setMetrics({ total, pending, interview, rejected, offers });
+    setMetrics({ total, pending, interviewing, rejected, offers });
   };
 
   const formatDate = (dateString) => {
@@ -75,13 +75,14 @@ function Overview() {
   };
 
   const graphData = {
-    labels: ["Pending", "Rejected", "Interviews", "Offers"],
+    responsive: true,
+    labels: ["Pending", "Interviewing", "Rejected"],
     datasets: [
       {
         label: "Applications by Status",
         data: [
           metrics.pending || 0,
-          metrics.interview || 0,
+          metrics.interviewing || 0,
           metrics.rejected || 0,
           metrics.offers || 0,
         ], // Show 0 when no data
@@ -125,9 +126,9 @@ function Overview() {
               <strong>Status</strong>
             </p>
             <p>Pending: {metrics.pending}</p>
-            <p>Interviews: {metrics.interview}</p>
+            <p>Interviewing: {metrics.interviewing}</p>
             <p>Rejected: {metrics.rejected}</p>
-            <p>Offers: {metrics.offer}</p>
+            <p>Offers: {metrics.offers}</p>
             <img
               src={images.OpenBox}
               alt="Open Box"

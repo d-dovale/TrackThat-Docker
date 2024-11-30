@@ -146,7 +146,7 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
               onChange={(e) => setStatus(e.target.value)}
             >
               <option value="Pending">Pending</option>
-              <option value="Interview">Interview</option>
+              <option value="Interviewing">Interviewing</option>
               <option value="Rejected">Rejected</option>
               <option value="Offer">Offer</option>
             </select>
