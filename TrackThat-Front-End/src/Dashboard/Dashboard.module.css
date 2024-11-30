@@ -84,6 +84,14 @@
     z-index: 10;
 }
 
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Ensure it stays above other content */
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
 .viewapp-buttons {
     margin-top: 5px;
     display: flex;
