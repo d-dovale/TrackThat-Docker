@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { APPLICATIONSURL } from "../../constants";
-import Navbar from "../Components/navbar";
-import images from "../images";
 import styles from "./Overview.module.css";
 import { Bar, Pie } from "react-chartjs-2";
+import images from "../images.js";
+import { motion } from 'framer-motion';
 import "chart.js/auto";
 
 function Overview() {
@@ -49,7 +49,8 @@ function Overview() {
         setApplications(data);
         calculateMetrics(data);
 
-        const { applicationsPerWeek, weekLabels } = calculateApplicationsPerWeek(data);
+        const { applicationsPerWeek, weekLabels } =
+          calculateApplicationsPerWeek(data);
         setApplicationsPerWeek(applicationsPerWeek);
         setWeekLabels(weekLabels);
 
@@ -65,12 +66,14 @@ function Overview() {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   const calculateMetrics = (data) => {
     const total = data.length;
     const pending = data.filter((app) => app.status === "Pending").length;
-    const interviewing = data.filter((app) => app.status === "Interviewing").length;
+    const interviewing = data.filter(
+      (app) => app.status === "Interviewing"
+    ).length;
     const rejected = data.filter((app) => app.status === "Rejected").length;
     const offers = data.filter((app) => app.status === "Offers").length;
 
@@ -104,8 +107,14 @@ function Overview() {
       weekEnd.setHours(23, 59, 59, 999);
 
       // Format week label
-      const startLabel = weekStart.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
-      const endLabel = weekEnd.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
+      const startLabel = weekStart.toLocaleDateString("en-US", {
+        month: "numeric",
+        day: "numeric",
+      });
+      const endLabel = weekEnd.toLocaleDateString("en-US", {
+        month: "numeric",
+        day: "numeric",
+      });
       weekLabels.push(`${startLabel}-${endLabel}`);
 
       // Push week object
@@ -125,7 +134,10 @@ function Overview() {
     // Count applications per week
     data.forEach((app) => {
       const appDate = new Date(app.date);
-      if (appDate.getFullYear() === currentYear && appDate.getMonth() === currentMonth) {
+      if (
+        appDate.getFullYear() === currentYear &&
+        appDate.getMonth() === currentMonth
+      ) {
         for (let i = 0; i < weeks.length; i++) {
           if (appDate >= weeks[i].start && appDate <= weeks[i].end) {
             applicationsPerWeek[i] += 1;
@@ -145,7 +157,9 @@ function Overview() {
 
   // Get current month name
   const currentDate = new Date();
-  const currentMonthName = currentDate.toLocaleString('default', { month: 'long' });
+  const currentMonthName = currentDate.toLocaleString("default", {
+    month: "long",
+  });
 
   // Colors used in charts
   const chartColors = ["#2F4F4F", "#556B2F", "#8B0000", "#191970"]; // Matte darker colors
@@ -190,7 +204,9 @@ function Overview() {
   };
 
   // Generate bar colors for each week by cycling through chartColors
-  const barColors = weekLabels.map((_, index) => chartColors[index % chartColors.length]);
+  const barColors = weekLabels.map(
+    (_, index) => chartColors[index % chartColors.length]
+  );
 
   const barChartData = {
     labels: weekLabels,
@@ -219,10 +235,10 @@ function Overview() {
         ticks: {
           color: "#ffffff",
           autoSkip: false,
-          maxRotation: 0, // Set to 0 for horizontal labels
-          minRotation: 0, // Set to 0 for horizontal labels
+          maxRotation: 0,
+          minRotation: 0,
           font: {
-            size: 10, // Adjust font size if needed
+            size: 10,
           },
         },
         grid: {
@@ -249,17 +265,34 @@ function Overview() {
   };
 
   return (
-    <div className={styles["overview-page"]}>
+    <motion.div
+      className={styles["overview-page"]}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1 className={styles["overview-header"]}>Overview</h1>
 
       {/* Information Row */}
       <div className={styles["info-row"]}>
         {/* Recently Added */}
-        <div className={styles["recent-added"]}>
-          <h2>Recently Added</h2>
+        <motion.div
+          className={`${styles["recent-added"]} ${styles["card"]}`}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <h2 className={styles["section-title"]}>
+            <img
+              src={images.Replay}
+              alt="Replay Icon"
+              className={styles["icon-placeholder"]}
+            />
+            Recently Added
+          </h2>
           {recentApplication ? (
             <div>
-              <p>
+              <p className={styles["company-text"]}>
                 <strong>Company:</strong> {recentApplication.company}
               </p>
               <p>
@@ -278,43 +311,87 @@ function Overview() {
           ) : (
             <p>No recent applications found.</p>
           )}
-        </div>
+        </motion.div>
 
         {/* Total Applications */}
-        <div className={styles["total-applications"]}>
-          <h2>Total Applications</h2>
+        <motion.div
+          className={`${styles["total-applications"]} ${styles["card"]}`}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <h2 className={styles["section-title"]}>
+            <img
+              src={images.TotalSales}
+              alt="Total Sales Icon"
+              className={styles["icon-placeholder"]}
+            />
+            Total Applications
+          </h2>
           <p className={styles["total-number"]}>{metrics.total}</p>
           <div className={styles["status-details"]}>
-            <p>Pending: {metrics.pending}</p>
-            <p>Interviewing: {metrics.interviewing}</p>
-            <p>Rejected: {metrics.rejected}</p>
-            <p>Offers: {metrics.offers}</p>
+            <p>
+              <strong>Pending:</strong> {metrics.pending}
+            </p>
+            <p>
+              <strong>Interviewing:</strong> {metrics.interviewing}
+            </p>
+            <p>
+              <strong>Rejected:</strong> {metrics.rejected}
+            </p>
+            <p>
+              <strong>Offers:</strong> {metrics.offers}
+            </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Goal */}
-        <div className={styles["goal"]}>
-          <h2>Goal</h2>
-          <p className={styles["goal-status"]}>3/3</p>
+        <motion.div
+          className={`${styles["goal"]} ${styles["card"]}`}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <h2 className={styles["section-title"]}>
+            <img
+              src={images.Goal}
+              alt="Goal Icon"
+              className={styles["icon-placeholder"]}
+            />
+            Goal
+          </h2>
+          <p className={styles["total-number"]}>3/3</p>
           <p>Applications This Week</p>
-        </div>
+        </motion.div>
       </div>
 
       {/* Charts Container */}
       <div className={styles["layout-container"]}>
         {/* Pie Chart Section */}
-        <div className={styles["overview-graph"]}>
-          <h2>Applications by Status</h2>
+        <motion.div
+          className={`${styles["overview-graph"]} ${styles["card"]}`}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <h2 className={styles["section-title"]}>Applications by Status</h2>
           <Pie data={graphData} options={graphOptions} />
-        </div>
+        </motion.div>
 
         {/* Bar Chart Section */}
-        <div className={styles["overview-graph"]}>
-          <h2>Applications in {currentMonthName}</h2>
+        <motion.div
+          className={`${styles["overview-graph"]} ${styles["card"]}`}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <h2 className={styles["section-title"]}>
+            Applications in {currentMonthName}
+          </h2>
           <Bar data={barChartData} options={barChartOptions} />
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
