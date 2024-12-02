@@ -16,21 +16,21 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #2e0031cf;
+  background-color: #543d5bad;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-  background-color: #4f0254e5;
+  background-color: #543d5b;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgb(226, 179, 235);
+  background-color: #2e1c34;
 }
 
 /* Alt scrollbar for browsers not using webkit */
 @supports not (-webkit-text-stroke: rgb(210, 30, 30)){
   * {
     scrollbar-width: auto; 
-    scrollbar-color: #2e0031cf rgb(226, 179, 235);;
+    scrollbar-color: #543d5bad #2e1c34;;
   } 
 }
