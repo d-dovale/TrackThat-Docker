@@ -18,8 +18,10 @@
     padding-left: 10px;
 }
 
-.company-icon img{
+.company-icon img {
     height: 35px;
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits without cropping */
 }
 
 .edit-button-container{
