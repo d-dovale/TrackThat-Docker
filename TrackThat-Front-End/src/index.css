@@ -9,3 +9,20 @@
     font-weight: 400;
     font-style: normal;
 }
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2e0031cf;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: #4f0254e5;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(226, 179, 235);
+}
