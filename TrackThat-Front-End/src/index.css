@@ -26,3 +26,11 @@
 ::-webkit-scrollbar-track {
   background-color: rgb(226, 179, 235);
 }
+
+/* Alt scrollbar for browsers not using webkit */
+@supports not (-webkit-text-stroke: rgb(210, 30, 30)){
+  * {
+    scrollbar-width: auto; 
+    scrollbar-color: #2e0031cf rgb(226, 179, 235);;
+  } 
+}
