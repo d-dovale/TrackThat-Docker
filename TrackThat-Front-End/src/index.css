@@ -9,3 +9,28 @@
     font-weight: 400;
     font-style: normal;
 }
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #543d5bad;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: #543d5b;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #2e1c34;
+}
+
+/* Alt scrollbar for browsers not using webkit */
+@supports not (-webkit-text-stroke: rgb(210, 30, 30)){
+  * {
+    scrollbar-width: auto; 
+    scrollbar-color: #543d5bad #2e1c34;;
+  } 
+}

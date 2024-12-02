@@ -28,6 +28,9 @@ import Edit from "./assets/Edit.png"
 import Logout from "./assets/Logout.png"
 import Company2 from "./assets/Company2.png"
 import OpenBox from "./assets/OpenBox.png"
+import Goal from "./assets/Goal.png"
+import Replay from "./assets/Replay.png"
+import TotalSales from "./assets/Total Sales.png"
 
 const images = {
     logo: logo,
@@ -59,7 +62,10 @@ const images = {
     Edit: Edit,
     Logout: Logout,
     Company2: Company2,
-    OpenBox: OpenBox
+    OpenBox: OpenBox,
+    Goal: Goal,
+    TotalSales: TotalSales,
+    Replay: Replay
 };
 
 export default images;

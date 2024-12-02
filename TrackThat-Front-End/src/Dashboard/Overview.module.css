@@ -1,138 +1,135 @@
+/* overview.module.css */
+
 :global(html, body) {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    /* overflow: hidden; */
-    font-family: 'Montserrat', sans-serif;
-    /* Ensure proper rendering and touch zooming */
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .overview-page {
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    padding: 20px;
-    width: 100%;
-    height: 80vh;
-    overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+  height: 80vh;
+  overflow: auto;
 }
 
 .overview-header {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 25px;
 }
 
-.layout-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
-    gap: 20px;
-    width: 100%;
-    margin-bottom: 20px;
+/* Reset default h2 styles */
+h2 {
+  font-size: inherit;
+  margin: 0;
+  font-weight: normal;
 }
 
+/* Common Header Style */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #b7b7b7;
+}
+
+/* Icon Placeholder Style */
+.icon-placeholder {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Info Row */
+.info-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* Common Card Style */
+.card {
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #342338; /* Light purple color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure .overview-graph retains its height */
 .overview-graph {
-    grid-column: 1 / 2;
-    padding: 20px;
-    max-height: 600px;
-    height: auto;
-    width: 100%;
-    border: 1px solid #462F4C;
-    border-radius: 8px;
+  height: 400px; /* Set a fixed height or adjust as needed */
 }
 
-.total-applications {
-    grid-column: 2 / 3;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid #462F4C;
-    border-radius: 8px;
-}
-
+/* Additional styles */
 .total-number {
-    font-size: 5rem;
-    font-weight: bold;
+  font-size: 5rem;
+  font-weight: bold;
 }
 
 .status-details {
-    font-size: 2rem;
-    text-align: center;
-    margin-top: 30px;
-}
-.open-box-image{
-    margin-top: 60px;
-    width: 100px;
-    height: auto;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.info-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 100%;
+.company-text {
+  margin-top: 30px;
 }
 
-.recent-added,
-.upcoming,
-.goal {
-    padding: 20px;
-    border: 1px solid #462F4C;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.upcoming-date,
-.goal-status {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-p, li {
-    font-size: 1rem;
-    margin-bottom: 5px;
+p,
+li {
+  font-size: 1rem;
+  margin-bottom: 5px;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+}
+
+/* Layout Container */
+.layout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Each chart takes up 50% */
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-    .layout-container {
-        grid-template-columns: 1fr;
-    }
+  .layout-container {
+    grid-template-columns: 1fr;
+  }
 
-    .overview-graph,
-    .total-applications {
-        grid-column: 1 / -1;
-    }
+  .overview-graph {
+    grid-column: 1 / -1;
+    height: auto;
+  }
 
-    .overview-graph {
-        height: auto;
-    }
+  .info-row {
+    grid-template-columns: 1fr;
+  }
 
-    .info-row {
-        grid-template-columns: 1fr;
-    }
-
-    .upcoming-date,
-    .goal-status,
-    .total-number {
-        font-size: 1.5rem;
-    }
+  .total-number {
+    font-size: 1.5rem;
+  }
 }
