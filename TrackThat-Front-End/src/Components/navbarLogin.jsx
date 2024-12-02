@@ -7,7 +7,7 @@ import styles from './navbarLogin.module.css';
 function NavbarLogin() {
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
+  const handleLogoutClick = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("username")
     navigate("/login");
@@ -31,7 +31,7 @@ function NavbarLogin() {
           <img src={images.dashboardIcon} alt="Dashboard Icon" />
           Dashboard
         </button>
-        <button className={styles["logout-button"]} onClick={handleLoginClick}>
+        <button className={styles["logout-button"]} onClick={handleLogoutClick}>
           <img src={images.Logout} alt="Log Out Icon" />
           Log Out
         </button>

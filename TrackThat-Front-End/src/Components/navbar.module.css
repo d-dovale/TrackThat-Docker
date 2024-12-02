@@ -5,13 +5,14 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  border-bottom: 2px solid #462F4C;
+  border-bottom: 2px solid #462f4c;
   padding: 15px 30px 15px 30px;
 }
-  
+
 .logo-container {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .logo {
@@ -32,11 +33,12 @@
   align-items: center;
 }
 
-.nav-button1, .nav-button2 {
+.nav-button1,
+.nav-button2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #462F4C;
+  background-color: #462f4c;
   color: white;
   font-size: 18px;
   font-family: "Montserrat", serif;
@@ -49,7 +51,8 @@
   margin-top: 5px;
 }
 
-.nav-button1:hover, .nav-button2:hover {
+.nav-button1:hover,
+.nav-button2:hover {
   background-color: #53385b;
 }
 
@@ -62,4 +65,29 @@
 .nav-button:last-child {
   margin-right: 0;
 }
-  
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8b3131;
+  color: white;
+  font-size: 18px;
+  font-family: "Montserrat", serif;
+  padding: 10px 16px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 25px;
+  margin-top: 5px;
+}
+
+.logout-button:hover {
+  background-color: #b16666;
+}
+
+.logout-button img {
+  width: 20px;
+  margin-right: 10px;
+}
