@@ -224,9 +224,9 @@ function Viewapp() {
           <span></span>
           <p>COMPANY</p>
           <p>POSITION</p>
-          <p onClick={() => setStatus((curr) => curr + 1)}>STATUS</p>
-          <p onClick={() => setDate((curr) => !curr)}>DATE APPLIED</p>
-          <p onClick={() => setSeason((curr) => curr + 1)}>SEASON</p>
+          <p className={styles["viewapp-tab-sortable"]} onClick={() => setStatus((curr) => curr + 1)}>STATUS</p>
+          <p className={styles["viewapp-tab-sortable"]} onClick={() => setDate((curr) => !curr)}>DATE APPLIED</p>
+          <p className={styles["viewapp-tab-sortable"]} onClick={() => setSeason((curr) => curr + 1)}>SEASON</p>
           <span></span>
           {filteredApplications.map((app) => {
             return (

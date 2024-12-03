@@ -92,6 +92,10 @@
     align-items: center;
 }
 
+.viewapp-tab-sortable{
+    cursor: pointer;
+}
+
 .search-bar {
     display: flex;
     align-items: center;
