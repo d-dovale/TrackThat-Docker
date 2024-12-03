@@ -43,6 +43,12 @@ function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
       if (res.status !== 200) {
+        if (res.status == 422) {
+          const error = await res.json()
+          setErrorMessage(error.detail[0].msg);
+          setShowErrorToast(true);
+          return;
+        }
         setErrorMessage("Password or email are incorrect.");
         setShowErrorToast(true);
         return;

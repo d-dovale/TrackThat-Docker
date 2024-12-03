@@ -37,7 +37,7 @@ function RegisterPage() {
         setShowErrorToast(true);
         return;
       }
-      if (name.length < 5) {
+      if (email.length < 5) {
         setErrorMessage("Email must be at least 5 characters long.");
         setShowErrorToast(true);
         return;
@@ -55,6 +55,12 @@ function RegisterPage() {
         body: JSON.stringify({ name, email, password }),
       });
       if (res.status !== 200) {
+        if (res.status == 422) {
+          const error = await res.json()
+          setErrorMessage(error.detail[0].msg);
+          setShowErrorToast(true);
+          return;
+        }
         setErrorMessage("User with credentials already exists");
         setShowErrorToast(true);
         return;
