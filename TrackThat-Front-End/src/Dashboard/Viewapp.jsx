@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "../Components/navbar";
 import ApplicationEntry from "../Components/ApplicationEntry";
 import AddAppWindows from "../Components/AddAppWindows";
 import EditAppWindows from "../Components/EditAppWindows";
-import EditButton from "../Components/EditButton";
 import images from "../images";
 import styles from "./Dashboard.module.css";
 import { APPLICATIONSURL } from "../../constants";
+
+import ErrorToast from "../Components/ErrorToast";
+import SuccessToast from "../Components/SuccessToast";
 
 function Viewapp() {
   const navigate = useNavigate();
@@ -23,6 +24,12 @@ function Viewapp() {
   const [status, setStatus] = useState(0); // Ordering
   const [date, setDate] = useState(true); // Ordering
 
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
+
   const handleAddApplicationClick = () => {
     setAddModalOpen(true);
   };
@@ -34,8 +41,10 @@ function Viewapp() {
     setEditModalOpen(false);
   };
 
-  const handleSubmitForm = () => {
+  const handleSubmitFormSuccess = () => {
     handleCloseAddModal();
+    setSuccessMessage("New Application Created.");
+    setShowSuccessToast(true);
     setNewAppAdded(true);
   };
 
@@ -44,19 +53,30 @@ function Viewapp() {
     setEditModalOpen(true);
   };
 
-  const handleSubmitEditForm = () => {
-    handleCloseEditModal();
-    setNewAppAdded(true);
+  const handleSubmitEditFormSuccess = (deleted) => {
+    if (deleted) {
+      handleCloseEditModal();
+      setSuccessMessage("Application Deleted");
+      setShowSuccessToast(true);
+      setNewAppAdded(true);
+    } else {
+      handleCloseEditModal();
+      setSuccessMessage("Application Edited");
+      setShowSuccessToast(true);
+      setNewAppAdded(true);
+    }
   };
 
   const filterBySearch = (search) => {
-    const filtered = applications.filter(app => app.company.toUpperCase().search(search.toUpperCase()) !== -1)
-    setFilteredApplications(filtered)
-  }
+    const filtered = applications.filter(
+      (app) => app.company.toUpperCase().search(search.toUpperCase()) !== -1
+    );
+    setFilteredApplications(filtered);
+  };
 
   useEffect(() => {
-    filterBySearch(search)
-  }, [search, applications])
+    filterBySearch(search);
+  }, [search, applications]);
 
   const sortByDate = (date) => {
     const sorted = [...applications].sort((a, b) => {
@@ -65,7 +85,7 @@ function Viewapp() {
       const dateB = new Date(b.date);
 
       // Sort in ascending order (earliest to latest)
-      return date ? dateA - dateB : dateB - dateA
+      return date ? dateA - dateB : dateB - dateA;
     });
 
     setApplications(sorted);
@@ -113,14 +133,14 @@ function Viewapp() {
   }, [status]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
     if (newAppAdded) {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        // User not authenticated. Show toast and navigate to sign up.
-        alert("Need to be logged in to post.");
-      }
-
       const fetchData = async () => {
         try {
           const res = await fetch(APPLICATIONSURL, {
@@ -129,14 +149,15 @@ function Viewapp() {
             },
           });
           if (res.status == 401 && res.statusText == "Unauthorized") {
-            localStorage.removeItem("token");
             navigate("/login");
+            return;
           }
           const data = await res.json();
-          console.log("User's Applications: ", data);
           setApplications(data);
-        } catch (error) {
-          console.error("Error fetching data:", error);
+        } catch (e) {
+          setErrorMessage(e.message);
+          setShowErrorToast(true);
+          return;
         }
       };
 
@@ -148,6 +169,16 @@ function Viewapp() {
 
   return (
     <div className={styles["viewapp-container"]}>
+      <ErrorToast
+        isVisible={showErrorToast}
+        message={errorMessage}
+        onClose={() => setShowErrorToast(false)}
+      />
+      <SuccessToast
+        isVisible={showSuccessToast}
+        message={successMessage}
+        onClose={() => setShowSuccessToast(false)}
+      />
       <div className={styles["viewapp-buttons"]}>
         <div className={styles["search-bar"]}>
           <img
@@ -191,7 +222,7 @@ function Viewapp() {
           <p>COMPANY</p>
           <p>POSITION</p>
           <p onClick={() => setStatus((curr) => curr + 1)}>STATUS</p>
-          <p onClick={() => setDate(curr => !curr)}>DATE APPLIED</p>
+          <p onClick={() => setDate((curr) => !curr)}>DATE APPLIED</p>
           <p onClick={() => setSeason((curr) => curr + 1)}>SEASON</p>
           <span></span>
           {filteredApplications.map((app) => {
@@ -209,13 +240,13 @@ function Viewapp() {
       <AddAppWindows
         show={isAddModalOpen}
         onClose={handleCloseAddModal}
-        onSuccessfulSubmit={handleSubmitForm}
+        onSuccessfulSubmit={handleSubmitFormSuccess}
       />
 
       <EditAppWindows
         show={isEditModalOpen}
         onClose={handleCloseEditModal}
-        onSuccessfulEdit={handleSubmitEditForm}
+        onSuccessfulEdit={handleSubmitEditFormSuccess}
         application={editApplication}
       />
     </div>

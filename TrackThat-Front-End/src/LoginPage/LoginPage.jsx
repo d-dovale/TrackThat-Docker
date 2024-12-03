@@ -4,10 +4,19 @@ import Logo from "../Components/logo";
 import images from "../images"; // Adjust the path as necessary
 import { useNavigate } from "react-router-dom";
 import { LOGINURL } from "../../constants";
+import ErrorToast from "../Components/ErrorToast";
+import SuccessToast from "../Components/SuccessToast";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
+
   const navigate = useNavigate();
 
   const handleCloseClick = () => {
@@ -15,6 +24,16 @@ function LoginPage() {
   };
 
   const loginRequest = async () => {
+    if (email.length < 1) {
+      setErrorMessage("Email field is empty.");
+      setShowErrorToast(true);
+      return;
+    }
+    if (password.length < 1) {
+      setErrorMessage("Password field is empty.");
+      setShowErrorToast(true);
+      return;
+    }
     try {
       const res = await fetch(LOGINURL, {
         method: "POST",
@@ -24,24 +43,40 @@ function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
       if (res.status !== 200) {
-        throw new Error(
-          `Login Unsuccessful: password or email are incorrect. Status ${res.status}`
-        );
+        setErrorMessage("Password or email are incorrect.");
+        setShowErrorToast(true);
+        return;
       }
       const data = await res.json();
       console.log(data);
       localStorage.setItem("token", data.access_token);
-      localStorage.setItem("username", data.username)
-      localStorage.setItem("email", data.email)
-      localStorage.setItem("weekly_goal", data.weekly_goal)
-      navigate("/dashboard/overview");
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("weekly_goal", data.weekly_goal);
+      setSuccessMessage("Login successful.");
+      setShowSuccessToast(true);
+      setTimeout(() => {
+        navigate("/dashboard/overview");
+      }, 1000);
     } catch (e) {
-      alert(`Failed: ${e.message}`);
+      setErrorMessage(e.message);
+      setShowErrorToast(true);
+      return;
     }
   };
 
   return (
     <div className={styles.signinContainer}>
+      <ErrorToast
+        isVisible={showErrorToast}
+        message={errorMessage}
+        onClose={() => setShowErrorToast(false)}
+      />
+      <SuccessToast
+        isVisible={showSuccessToast}
+        message={successMessage}
+        onClose={() => setShowSuccessToast(false)}
+      />
       <Logo />
       <div className={styles.closeIcon} onClick={handleCloseClick}>
         <img

@@ -1,49 +1,96 @@
-import React, { useState } from 'react';
-import styles from './RegisterPage.module.css'; // Use CSS Modules
-import Logo from '../Components/logo';
-import images from '../images'; // Adjust the path as necessary
-import { useNavigate } from 'react-router-dom';
-import { SIGNUPURL } from '../../constants';
+import React, { useState } from "react";
+import styles from "./RegisterPage.module.css"; // Use CSS Modules
+import Logo from "../Components/logo";
+import images from "../images"; // Adjust the path as necessary
+import { useNavigate } from "react-router-dom";
+import { SIGNUPURL } from "../../constants";
+import ErrorToast from "../Components/ErrorToast";
+import SuccessToast from "../Components/SuccessToast";
 
 function RegisterPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
+
   const navigate = useNavigate();
 
   const handleCloseClick = () => {
-    navigate('/'); // Navigate back to the Landing Page
+    navigate("/"); // Navigate back to the Landing Page
   };
 
   const signupRequest = async () => {
     try {
-      if (name.length < 2 || email.length < 5 || password.length < 5 || password !== confirmPassword) {
-        throw new Error('Invalid data provided: Check email, name, and that passwords match. Passwords must be at least 5 characters long.');
+      if (password.length < 5) {
+        setErrorMessage("Password must be at least 5 characters long.");
+        setShowErrorToast(true);
+        return;
+      }
+      if (name.length < 2) {
+        setErrorMessage("Name must be at least 2 characters long.");
+        setShowErrorToast(true);
+        return;
+      }
+      if (name.length < 5) {
+        setErrorMessage("Email must be at least 5 characters long.");
+        setShowErrorToast(true);
+        return;
+      }
+      if (password != confirmPassword) {
+        setErrorMessage("Passwords do not match.");
+        setShowErrorToast(true);
+        return;
       }
       const res = await fetch(SIGNUPURL, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, password }),
       });
       if (res.status !== 200) {
-        throw new Error(`User with credentials already exists, status ${res.status}`);
+        setErrorMessage("User with credentials already exists");
+        setShowErrorToast(true);
+        return;
       }
       const user = await res.json();
-      console.log(user);
-      navigate('/login');
+      setSuccessMessage("User created.");
+      setShowSuccessToast(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } catch (e) {
-      alert(`Failed: ${e.message}`);
+      setErrorMessage(e.message);
+      setShowErrorToast(true);
+      return;
     }
   };
 
   return (
     <div className={styles.registerContainer}>
+      <ErrorToast
+        isVisible={showErrorToast}
+        message={errorMessage}
+        onClose={() => setShowErrorToast(false)}
+      />
+      <SuccessToast
+        isVisible={showSuccessToast}
+        message={successMessage}
+        onClose={() => setShowSuccessToast(false)}
+      />
       <Logo />
       <div className={styles.closeIcon} onClick={handleCloseClick}>
-        <img src={images.close} alt="Close Icon" className={styles.closeIconImage} />
+        <img
+          src={images.close}
+          alt="Close Icon"
+          className={styles.closeIconImage}
+        />
       </div>
       <div className={styles.registerBox}>
         <div className={styles.registerForm}>
@@ -82,8 +129,11 @@ function RegisterPage() {
         </div>
         <div className={styles.loginBoxWrapper}>
           <div className={styles.loginBox}>
-            Already have an account?{' '}
-            <span className={styles.loginLink} onClick={() => navigate('/login')}>
+            Already have an account?{" "}
+            <span
+              className={styles.loginLink}
+              onClick={() => navigate("/login")}
+            >
               Sign In
             </span>
           </div>

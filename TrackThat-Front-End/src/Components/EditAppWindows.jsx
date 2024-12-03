@@ -74,7 +74,7 @@ function EditAppWindows({ show, onClose, onSuccessfulEdit, application }) {
     e.preventDefault();
     try {
       await deleteApplicationRequest();
-      onSuccessfulEdit();
+      onSuccessfulEdit(true);
     } catch (e) {
       console.log(e);
       alert("Unsuccesful delete.");

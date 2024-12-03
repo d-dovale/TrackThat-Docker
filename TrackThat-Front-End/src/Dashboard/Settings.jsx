@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import { PATCHUSERURL, SETGOALURL } from "../../constants";
 
-import Navbar from "../Components/navbar";
 import images from "../images";
 import styles from "./Settings.module.css";
+
+import ErrorToast from "../Components/ErrorToast";
+import SuccessToast from "../Components/SuccessToast";
 
 function Settings() {
   const navigate = useNavigate();
@@ -16,6 +18,12 @@ function Settings() {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
+
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
     const username = localStorage.getItem("username");
@@ -34,6 +42,7 @@ function Settings() {
       localStorage.removeItem("email");
       localStorage.removeItem("weekly_goal");
       navigate("/login");
+      return;
     }
   }, []);
 
@@ -42,7 +51,6 @@ function Settings() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Need to be logged in to view this page.");
       navigate("/login");
       return;
     }
@@ -58,11 +66,15 @@ function Settings() {
           body: JSON.stringify({ weekly_goal: weeklyGoal }),
         });
         if (res.status !== 200) {
-          throw new Error(`Set Goal Unsuccessful.`);
+          setErrorMessage("Set Goal Unsuccesful");
+          setShowErrorToast(true);
+          return;
         }
         localStorage.setItem("weekly_goal", weeklyGoal);
       } catch (e) {
-        alert(`Failed: ${e.message}`);
+        setErrorMessage(e.message);
+        setShowToast(true);
+        return;
       }
     }
   };
@@ -73,7 +85,6 @@ function Settings() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Need to be logged in to view this page.");
       navigate("/login");
       return;
     }
@@ -83,7 +94,8 @@ function Settings() {
     let success = false;
 
     if (password.length < 5) {
-      alert("Must enter password to perform any changes to user data.");
+      setErrorMessage("Password must be at least 5 characters long.");
+      setShowToast(true);
       return;
     }
 
@@ -104,7 +116,8 @@ function Settings() {
       }
     }
     if (newPassword.length > 0 && newPassword != confirmNewPassword) {
-      alert("New password and confirm password do not match.");
+      setErrorMessage("Passwords do not match.");
+      setShowToast(true);
       return;
     }
     if (newPassword.length > 0 && newPassword == confirmNewPassword) {
@@ -112,9 +125,8 @@ function Settings() {
       success = true;
     }
     if (!success) {
-      return; // No op, no body to be changed.
+      return;
     }
-
 
     try {
       const res = await fetch(PATCHUSERURL, {
@@ -127,32 +139,47 @@ function Settings() {
       });
       if (res.status !== 200) {
         if (res.status == 409) {
-          throw new Error(
-            `Patch Unsuccessful: User with same email already exists. Status ${res.status}`
-          );
+          setErrorMessage("User with same email already exists.");
+          setShowToast(true);
+          return;
         }
         if (res.status == 400) {
-          throw new Error(
-            `Patch Unsuccessful: Passwords must be at least 5 characters in length. Status ${res.status}`
-          );
+          setErrorMessage("Passwords must be at least 5 characters in length.");
+          setShowToast(true);
+          return;
         }
-        throw new Error(
-          `Patch Unsuccessful: Password is incorrect. Status ${res.status}`
-        );
+        setErrorMessage("Password is incorrect.");
+        setShowToast(true);
+        return;
       }
-      const data = await res.json();
-      localStorage.removeItem("token")
-      localStorage.removeItem("email")
-      localStorage.removeItem("username")
-      localStorage.removeItem("weekly_goal")
-      navigate("/login");
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
+      localStorage.removeItem("username");
+      localStorage.removeItem("weekly_goal");
+      setSuccessMessage("User updated.");
+      setShowSuccessToast(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } catch (e) {
-      alert(`Failed: ${e.message}`);
+      setErrorMessage(e.message);
+      setShowToast(true);
+      return;
     }
   };
 
   return (
     <div className={styles["settings-main-container"]}>
+      <ErrorToast
+        isVisible={showErrorToast}
+        message={errorMessage}
+        onClose={() => setShowErrorToast(false)}
+      />
+      <SuccessToast
+        isVisible={showSuccessToast}
+        message={successMessage}
+        onClose={() => setShowSuccessToast(false)}
+      />
       <div className={styles["settings-header-container"]}>
         <img
           src={images.settingsIcon}

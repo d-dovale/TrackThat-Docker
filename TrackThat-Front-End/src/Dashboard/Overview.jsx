@@ -5,8 +5,10 @@ import { APPLICATIONSURL } from "../../constants";
 import styles from "./Overview.module.css";
 import { Bar, Pie } from "react-chartjs-2";
 import images from "../images.js";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import "chart.js/auto";
+
+import ErrorToast from "../Components/ErrorToast.jsx";
 
 function Overview() {
   const navigate = useNavigate();
@@ -25,18 +27,22 @@ function Overview() {
   const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
   const [weeklyGoal, setWeeklyGoal] = useState(0);
 
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const goal = localStorage.getItem("weekly_goal")
+    const goal = localStorage.getItem("weekly_goal");
 
-    if(!Number.isNaN(Number(goal))){
-      setWeeklyGoal(goal)
+    if (!Number.isNaN(Number(goal))) {
+      setWeeklyGoal(goal);
     }
 
     if (!token) {
-      alert("Need to be logged in to view this page.");
-      navigate("/login");
-      return;
+      if (!token) {
+        navigate("/login");
+        return;
+      }
     }
 
     const fetchData = async () => {
@@ -47,12 +53,10 @@ function Overview() {
           },
         });
         if (res.status === 401 && res.statusText === "Unauthorized") {
-          localStorage.removeItem("token");
           navigate("/login");
           return;
         }
         const data = await res.json();
-        console.log("User's Applications: ", data);
         setApplications(data);
         calculateMetrics(data);
 
@@ -60,7 +64,7 @@ function Overview() {
           calculateApplicationsPerWeek(data);
         setApplicationsPerWeek(applicationsPerWeek);
         setWeekLabels(weekLabels);
-        setCurrentWeekIndex(currentWeekIndex)
+        setCurrentWeekIndex(currentWeekIndex);
 
         setRecentApplication(data[data.length - 1]);
         setUpcomingApplication(
@@ -68,8 +72,10 @@ function Overview() {
             .filter((app) => new Date(app.date) >= new Date())
             .sort((a, b) => new Date(a.date) - new Date(b.date))[0]
         );
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      } catch (e) {
+        setErrorMessage(e.message);
+        setShowErrorToast(true);
+        return;
       }
     };
 
@@ -283,6 +289,11 @@ function Overview() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <ErrorToast
+        isVisible={showErrorToast}
+        message={errorMessage}
+        onClose={() => setShowErrorToast(false)}
+      />
       <h1 className={styles["overview-header"]}>Overview</h1>
 
       {/* Information Row */}
@@ -372,7 +383,9 @@ function Overview() {
             />
             Goal
           </h2>
-          <p className={styles["total-number"]}>{applicationsPerWeek[currentWeekIndex]}/{weeklyGoal}</p>
+          <p className={styles["total-number"]}>
+            {applicationsPerWeek[currentWeekIndex]}/{weeklyGoal}
+          </p>
           <p>Applications This Week</p>
         </motion.div>
       </div>
