@@ -53,6 +53,7 @@ function LoginPage() {
       localStorage.setItem("username", data.username);
       localStorage.setItem("email", data.email);
       localStorage.setItem("weekly_goal", data.weekly_goal);
+      setShowErrorToast(false);
       setSuccessMessage("Login successful.");
       setShowSuccessToast(true);
       setTimeout(() => {

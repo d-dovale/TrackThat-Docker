@@ -43,6 +43,7 @@ function Viewapp() {
 
   const handleSubmitFormSuccess = () => {
     handleCloseAddModal();
+    setShowErrorToast(false);
     setSuccessMessage("New Application Created.");
     setShowSuccessToast(true);
     setNewAppAdded(true);
@@ -56,11 +57,13 @@ function Viewapp() {
   const handleSubmitEditFormSuccess = (deleted) => {
     if (deleted) {
       handleCloseEditModal();
+      setErrorMessage(false);
       setSuccessMessage("Application Deleted");
       setShowSuccessToast(true);
       setNewAppAdded(true);
     } else {
       handleCloseEditModal();
+      setErrorMessage(false);
       setSuccessMessage("Application Edited");
       setShowSuccessToast(true);
       setNewAppAdded(true);

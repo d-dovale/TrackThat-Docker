@@ -60,6 +60,7 @@ function RegisterPage() {
         return;
       }
       const user = await res.json();
+      setShowErrorToast(false);
       setSuccessMessage("User created.");
       setShowSuccessToast(true);
       setTimeout(() => {

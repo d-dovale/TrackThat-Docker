@@ -70,6 +70,9 @@ function Settings() {
           setShowErrorToast(true);
           return;
         }
+        setShowErrorToast(false);
+        setSuccessMessage("Weekly goal updated.");
+        setShowSuccessToast(true);
         localStorage.setItem("weekly_goal", weeklyGoal);
       } catch (e) {
         setErrorMessage(e.message);
@@ -156,6 +159,7 @@ function Settings() {
       localStorage.removeItem("email");
       localStorage.removeItem("username");
       localStorage.removeItem("weekly_goal");
+      setShowErrorToast(false);
       setSuccessMessage("User updated.");
       setShowSuccessToast(true);
       setTimeout(() => {
