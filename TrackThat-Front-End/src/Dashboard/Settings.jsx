@@ -33,7 +33,7 @@ function Settings() {
     if (username && email && Number.isInteger(goal)) {
       setName(username);
       setEmail(email);
-      if (!Number.isNaN(goal)) {
+      if (!Number.isNaN(goal) && goal >= 0) {
         setWeeklyGoal(goal);
       }
     } else {
@@ -47,11 +47,17 @@ function Settings() {
   }, []);
 
   const setGoalRequest = async () => {
-    const goal = localStorage.getItem("weekly_goal");
+    const goal = Number(localStorage.getItem("weekly_goal"));
     const token = localStorage.getItem("token");
 
     if (!token) {
       navigate("/login");
+      return;
+    }
+
+    if (weeklyGoal < 0) {
+      setErrorMessage("Goal cannot be negative.");
+      setShowErrorToast(true);
       return;
     }
 
