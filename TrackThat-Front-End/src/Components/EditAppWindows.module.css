@@ -1,21 +1,12 @@
-:global(html, body) {
-    height: 100%;
-    width: 100%;
+/* Global Reset */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
-    font-family: 'Montserrat', sans-serif;
-    /* Ensure proper rendering and touch zooming */
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-}
-
-*,
-*::before,
-*::after {
     box-sizing: border-box;
+    font-family: "Montserrat", serif;
 }
 
+/* Modal Backdrop */
 .edit-modal-backdrop {
     position: fixed;
     top: 0;
@@ -29,6 +20,7 @@
     z-index: 1000;
 }
 
+/* Modal */
 .editModal {
     background-color: #301934;
     padding: 25px;
@@ -38,51 +30,49 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden; /* To maintain rounded corners */
 }
 
+/* Inner Content Wrapper */
+.edit-modal-content {
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 70vh; /* Adjust as needed */
+    padding-right: 5px; /* Optional: Prevent scrollbar overlap */
+}
+
+/* Modal Header */
+.edit-modal-header {
+    display: flex;
+    justify-content: space-between; /* Space out title and close button */
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px; /* Adjust horizontal padding as needed */
+}
+
+.edit-modal-title {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-family: "Montserrat", serif;
+}
+
+/* Close Button */
 .edit-modal-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     border: none;
     background: none;
     cursor: pointer;
     color: white;
-    margin-top: 10px;
+    font-size: 24px;
+    padding: 0;
 }
 
+/* Icons */
 .editIcon {
     vertical-align: middle;
     width: 25px;
     height: auto;
     margin-right: 8px;
-}
-
-.edit-modal-header {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 24px;
-    margin-bottom: 30px;
-    margin-left: 10px;
-    font-family: "Montserrat", serif;
-}
-
-.edit-form-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.edit-form-group label {
-    color: white;
-    font-size: 18px;
-    margin-bottom: 5px;
-    width: 100%;
-    font-family: "Montserrat", serif;
-    margin-left: 5px;
-    margin-top: 5px;
 }
 
 .edit-icon-small {
@@ -92,6 +82,24 @@
     margin-right: 5px;
 }
 
+/* Form Group */
+.edit-form-group {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.edit-form-group label {
+    color: rgb(207, 207, 207);
+    font-size: 18px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-family: "Montserrat", serif;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
 .edit-form-group input,
 .edit-form-group select {
     width: 93%;
@@ -99,55 +107,59 @@
     border-radius: 12px;
     border: 1px solid white;
     background-color: #462F4C;
+    color: white;
     font-family: "Montserrat", serif;
     margin-left: 10px;
-    margin-bottom: 15px;
 }
 
+/* Button Container */
 .edit-button-container {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
+/* Buttons */
 .edit-save-button,
 .edit-delete-button {
-    border: none;
-    padding: 12px 30px;
-    cursor: pointer;
+    background-color: #221E22;
     color: white;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 10px; 
+    padding: 12px 30px;
+    border: none;
+    border-radius: 15px;
+    min-width: 150px;
+    cursor: pointer;
     font-family: "Montserrat", serif;
     font-weight: bold;
-    font-size: 22px;
-    border-radius: 15px;
-    flex: 1; 
-    margin-top: 20px; 
+    font-size: 18px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.edit-save-button {
-    background-color: #221E22;
+.edit-save-button:hover {
+    background-color: #382f38;
 }
 
 .edit-delete-button {
     background-color: #8B3131;
 }
 
-.edit-save-button:hover {
-    background-color: #805EAA;
-}
-
 .edit-delete-button:hover {
     background-color: #a73232;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
     .editModal {
         padding: 15px;
+    }
+
+    .edit-modal-header {
+        padding: 0 5px;
     }
 
     .edit-form-group label,
@@ -159,7 +171,12 @@
     .edit-save-button,
     .edit-delete-button {
         font-size: 16px;
-        padding: 8px 16px;
+        padding: 10px 20px;
+        min-width: 120px;
+    }
+
+    .edit-modal-close-btn {
+        font-size: 22px;
     }
 }
 
@@ -168,6 +185,16 @@
         max-width: 90%;
     }
 
+    .edit-modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .edit-modal-close-btn {
+        align-self: flex-end;
+        margin-top: -40px;
+    }
+
     .edit-form-group label,
     .edit-form-group input,
     .edit-form-group select {
@@ -177,11 +204,7 @@
     .edit-save-button,
     .edit-delete-button {
         font-size: 14px;
-        padding: 6px 12px;
-        width: 60%;
-    }
-
-    .edit-modal-close-btn {
-        font-size: 20px;
+        padding: 8px 16px;
+        min-width: 100px;
     }
 }
