@@ -19,7 +19,7 @@ function RegisterPage() {
   const signupRequest = async () => {
     try {
       if (name.length < 2 || email.length < 5 || password.length < 5 || password !== confirmPassword) {
-        throw new Error('Invalid data provided, check email, name, and that passwords match.');
+        throw new Error('Invalid data provided: Check email, name, and that passwords match. Passwords must be at least 5 characters long.');
       }
       const res = await fetch(SIGNUPURL, {
         method: 'POST',

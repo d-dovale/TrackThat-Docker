@@ -83,7 +83,7 @@ function Overview() {
       (app) => app.status === "Interviewing"
     ).length;
     const rejected = data.filter((app) => app.status === "Rejected").length;
-    const offers = data.filter((app) => app.status === "Offers").length;
+    const offers = data.filter((app) => app.status === "Offer").length;
 
     setMetrics({ total, pending, interviewing, rejected, offers });
   };

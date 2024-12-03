@@ -194,6 +194,7 @@ function EditAppWindows({ show, onClose, onSuccessfulEdit, application }) {
               <option value="Pending">Pending</option>
               <option value="Interview">Interview</option>
               <option value="Rejected">Rejected</option>
+              <option value="Offer">Offer</option>
             </select>
           </div>
           {/* Action Buttons */}
