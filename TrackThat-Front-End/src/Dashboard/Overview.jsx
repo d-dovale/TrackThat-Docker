@@ -22,9 +22,16 @@ function Overview() {
   const [weekLabels, setWeekLabels] = useState([]);
   const [recentApplication, setRecentApplication] = useState(null);
   const [upcomingApplication, setUpcomingApplication] = useState(null);
+  const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
+  const [weeklyGoal, setWeeklyGoal] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const goal = localStorage.getItem("weekly_goal")
+
+    if(!Number.isNaN(Number(goal))){
+      setWeeklyGoal(goal)
+    }
 
     if (!token) {
       alert("Need to be logged in to view this page.");
@@ -49,10 +56,11 @@ function Overview() {
         setApplications(data);
         calculateMetrics(data);
 
-        const { applicationsPerWeek, weekLabels } =
+        const { applicationsPerWeek, weekLabels, currentWeekIndex } =
           calculateApplicationsPerWeek(data);
         setApplicationsPerWeek(applicationsPerWeek);
         setWeekLabels(weekLabels);
+        setCurrentWeekIndex(currentWeekIndex)
 
         setRecentApplication(data[data.length - 1]);
         setUpcomingApplication(
@@ -147,7 +155,11 @@ function Overview() {
       }
     });
 
-    return { applicationsPerWeek, weekLabels };
+    const currentWeekIndex = weeks.findIndex(
+      (week) => currentDate >= week.start && currentDate <= week.end
+    );
+
+    return { applicationsPerWeek, weekLabels, currentWeekIndex };
   };
 
   const formatDate = (dateString) => {
@@ -360,7 +372,7 @@ function Overview() {
             />
             Goal
           </h2>
-          <p className={styles["total-number"]}>3/3</p>
+          <p className={styles["total-number"]}>{applicationsPerWeek[currentWeekIndex]}/{weeklyGoal}</p>
           <p>Applications This Week</p>
         </motion.div>
       </div>

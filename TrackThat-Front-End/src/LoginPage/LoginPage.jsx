@@ -32,6 +32,8 @@ function LoginPage() {
       console.log(data);
       localStorage.setItem("token", data.access_token);
       localStorage.setItem("username", data.username)
+      localStorage.setItem("email", data.email)
+      localStorage.setItem("weekly_goal", data.weekly_goal)
       navigate("/dashboard/overview");
     } catch (e) {
       alert(`Failed: ${e.message}`);

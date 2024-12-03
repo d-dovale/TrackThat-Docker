@@ -51,8 +51,6 @@ function ApplicationEntry({ application, onEditButtonClick }) {
             e.target.onerror = null;
             e.target.src = images.Company2;
           }}
-          width="50"
-          height="50"
         />
       </div>
       <p>{application.company}</p>

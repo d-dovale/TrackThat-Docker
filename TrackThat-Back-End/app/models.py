@@ -2,17 +2,11 @@ from sqlmodel import Field, SQLModel, create_engine, Relationship
 from enum import Enum 
 import datetime
 
-class UserPreferences(SQLModel):
-    career_stage : str | None
-    preferred_job_type : str | None
-    location_preference : str | None
-    field_of_interest : str | None
-    skills : str | None
-
 class UserBase(SQLModel):
     id : int | None = Field(primary_key=True, default=None)
     name : str = Field(index=True)
     email : str
+    weekly_goal : int | None = Field(default=0)
 
 class User(UserBase, table=True):
     password : str

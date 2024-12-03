@@ -11,7 +11,7 @@ from typing import Annotated
 from sqlmodel import select, col
 from fastapi import APIRouter, Body, HTTPException, status, Depends
 from pydantic import BaseModel, EmailStr
-from ..dependencies import SessionDep
+from ..dependencies import SessionDep, get_current_user_id
 from passlib.context import CryptContext 
 from app.models import User, UserBase
 from datetime import timedelta, timezone, datetime
@@ -29,9 +29,18 @@ class UserInSignUp(BaseModel):
     email : EmailStr
     password : str
 
+class UserPatch(UserInSignUp):
+    name : str = None
+    email : EmailStr = None
+    password : str
+    new_password : str = None
+
 class UserInLogin(BaseModel):
     email : EmailStr
     password : str
+
+class Goal(BaseModel):
+    weekly_goal : int
 
 class Token(BaseModel):
     access_token: str
@@ -39,6 +48,13 @@ class Token(BaseModel):
 
 class EmailToken(Token):
     username : str
+    email : str
+    weekly_goal : int
+
+class PatchResponse(BaseModel):
+    username : str
+    email : str
+    weekly_goal : int
 
 
 
@@ -62,19 +78,25 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
 @router.post("/signup")
 async def signup(user : Annotated[UserInSignUp, Body()], session : SessionDep) -> UserBase:
-    user_find = session.exec(select(User).where(col(User.name) == user.name)).first()
+    user_find = session.exec(select(User).where(col(User.email) == user.email)).first()
     if user_find:
        raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Username already exists.",
+                detail="User with email already exists.",
             )
-    newuser = User(name = user.name, email=user.email, password=get_password_hash(user.password))
+    if len(user.password) < 5:
+       raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Passwords must be at least 5 characters in length.",
+            )
+
+    newuser = User(name = user.name, email=user.email, password=get_password_hash(user.password), weekly_goal=0)
     session.add(newuser)
     session.commit()
     session.refresh(newuser)
     return newuser
 
-@router.post("/login")
+@router.post("/login") # Need fix, username not unique! Currently not using endpoint in Frontend.
 async def login_for_access_token(
         form_data: Annotated[OAuth2PasswordRequestForm, Depends()], session : SessionDep
 ) -> Token:
@@ -104,4 +126,54 @@ async def login_email(request_user : Annotated[UserInLogin, Body()], session : S
     access_token = create_access_token(
             data={"sub": f"{user.id}:{user.name}"}, expires_delta=access_token_expires
     )
-    return EmailToken(access_token=access_token, token_type="bearer", username=user.name) 
+    return EmailToken(access_token=access_token, token_type="bearer", username=user.name, email=user.email, weekly_goal=user.weekly_goal) 
+
+@router.post("/set-goal")
+async def set_goal(goal : Annotated[Goal, Body()] , user_id : Annotated[int, Depends(get_current_user_id)], session : SessionDep):
+    user = session.get(User, user_id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User provided does not exist.")
+    user.weekly_goal = goal.weekly_goal
+    session.add(user)
+    session.commit()
+
+@router.post("/patch-user")
+async def patch_user(patch_user : Annotated[UserPatch, Body()], user_id : Annotated[int, Depends(get_current_user_id)], session : SessionDep):
+
+    user = session.get(User, user_id)
+
+    if not user or not verify_password(patch_user.password, user.password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    if patch_user.email != None and user.email != patch_user.email:
+        user_find = session.exec(select(User).where(col(User.email) == patch_user.email)).first()
+
+        if user_find and user_find != user:
+            raise HTTPException(
+                        status_code=status.HTTP_409_CONFLICT,
+                        detail="User with email already exists.",
+                    )
+
+        user.email = patch_user.email
+
+    if patch_user.name != None and patch_user.name != user.name:
+        user.name = patch_user.name
+    
+    if patch_user.new_password != None and len(patch_user.new_password) < 5: 
+       raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Passwords must be at least 5 characters in length.",
+            )
+
+    if patch_user.new_password != None: 
+        user.password = get_password_hash(patch_user.new_password)
+    
+    session.add(user)
+    session.commit()
+    session.refresh(user)
+
+    return PatchResponse(username=user.name, email=user.email, weekly_goal=user.weekly_goal) 

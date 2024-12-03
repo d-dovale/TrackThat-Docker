@@ -18,7 +18,7 @@ function RegisterPage() {
 
   const signupRequest = async () => {
     try {
-      if (name.length < 2 || email.length < 2 || password !== confirmPassword) {
+      if (name.length < 2 || email.length < 5 || password.length < 5 || password !== confirmPassword) {
         throw new Error('Invalid data provided, check email, name, and that passwords match.');
       }
       const res = await fetch(SIGNUPURL, {
