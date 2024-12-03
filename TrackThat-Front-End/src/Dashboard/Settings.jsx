@@ -82,7 +82,7 @@ function Settings() {
         localStorage.setItem("weekly_goal", weeklyGoal);
       } catch (e) {
         setErrorMessage(e.message);
-        setShowToast(true);
+        setShowErrorToast(true);
         return;
       }
     }
@@ -104,7 +104,7 @@ function Settings() {
 
     if (password.length < 5) {
       setErrorMessage("Password must be at least 5 characters long.");
-      setShowToast(true);
+      setShowErrorToast(true);
       return;
     }
 
@@ -126,14 +126,19 @@ function Settings() {
     }
     if (newPassword.length > 0 && newPassword != confirmNewPassword) {
       setErrorMessage("Passwords do not match.");
-      setShowToast(true);
+      setShowErrorToast(true);
       return;
     }
     if (newPassword.length > 0 && newPassword == confirmNewPassword) {
       body["new_password"] = newPassword;
       success = true;
     }
+
     if (!success) {
+      setErrorMessage(
+        "To update your information ensure at least one field has been modified."
+      );
+      setShowErrorToast(true);
       return;
     }
 
@@ -149,16 +154,16 @@ function Settings() {
       if (res.status !== 200) {
         if (res.status == 409) {
           setErrorMessage("User with same email already exists.");
-          setShowToast(true);
+          setShowErrorToast(true);
           return;
         }
         if (res.status == 400) {
           setErrorMessage("Passwords must be at least 5 characters in length.");
-          setShowToast(true);
+          setShowErrorToast(true);
           return;
         }
         setErrorMessage("Password is incorrect.");
-        setShowToast(true);
+        setShowErrorToast(true);
         return;
       }
       localStorage.removeItem("token");
@@ -173,7 +178,7 @@ function Settings() {
       }, 1000);
     } catch (e) {
       setErrorMessage(e.message);
-      setShowToast(true);
+      setShowErrorToast(true);
       return;
     }
   };
