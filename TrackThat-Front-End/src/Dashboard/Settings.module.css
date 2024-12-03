@@ -55,7 +55,7 @@
     flex: 0 0 30%; 
     box-sizing: border-box;
     border: 2px solid #462F4C;
-    padding: 30px 0px 30px 40px;
+    padding: 30px 40px 30px 40px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -75,15 +75,34 @@
     font-weight: bold;
     gap: 20px;
 }
-.settings-submit-button2{
-    padding: 8px 16px;
+
+.settings-submit-button {
+    padding: 10px 20px;
     background-color: #462F4C; 
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
     margin-top: 30px;
     font-family: "Montserrat", serif;
+    font-size: 1rem;
+}
+
+.settings-submit-button2{
+    padding: 10px 20px;
+    background-color: #462F4C; 
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-family: "Montserrat", serif;
+    font-size: 1rem;
+}
+
+.settings-submit-button:hover,
+.settings-submit-button2:hover {
+    background-color: #53385b;
 }
 
 .settings-info-container {
@@ -106,7 +125,7 @@
 .settings-subtitle {
     font-size: 24px;
     font-family: "Montserrat", sans-serif;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .settings-user-avatar {
@@ -140,6 +159,14 @@
     background-color: #8B3131;
 }
 
+.settings-upload-button:hover{
+    background-color: #53385b;
+}
+
+.settings-remove-button:hover{
+    background-color: #9c3f3f;
+}
+
 .settings-upload-button img, .settings-remove-button img {
     width: 24px; 
     height: 24px;
@@ -156,17 +183,6 @@
     font-family: "Montserrat", serif;
     font-size: 14px;
     margin: 10px 0;
-}
-
-.settings-submit-button {
-    padding: 8px 16px;
-    background-color: #462F4C; 
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-family: "Montserrat", serif;
 }
 
 @media (max-width: 768px) {
