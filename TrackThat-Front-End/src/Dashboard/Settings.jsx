@@ -61,7 +61,15 @@ function Settings() {
       return;
     }
 
-    if (weeklyGoal != goal && !Number.isNaN(goal)) {
+    if (weeklyGoal == goal) {
+      setErrorMessage(
+        "To update your information ensure at least one field has been modified."
+      );
+      setShowErrorToast(true);
+      return;
+    }
+
+    if (!Number.isNaN(goal)) {
       try {
         const res = await fetch(SETGOALURL, {
           method: "POST",
