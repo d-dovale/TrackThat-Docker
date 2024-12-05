@@ -125,7 +125,7 @@ function LoginPage() {
         </div>
         <div className={styles.registerBoxWrapper}>
           <div className={styles.registerBox}>
-            New to trackthat?{" "}
+            New to TrackThat?{" "}
             <span
               className={styles.createAccountLink}
               onClick={() => navigate("/register")}
