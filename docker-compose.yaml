@@ -1,11 +1,11 @@
 services:
   web:
     build:
-      context: .
+      context: ./TrackThat-Front-End # Set the context to the front-end directory
       args:
-        VITE_API_KEY: ${VITE_API_KEY}
+        VITE_API_KEY: ${VITE_API_KEY} # Pass build arguments
     environment:
-      - VITE_API_KEY=${VITE_API_KEY}
+      - VITE_API_KEY=${VITE_API_KEY} # Set environment variables
     ports:
       - 5173:5173
     command: ["npm", "run", "dev"]
