@@ -5,11 +5,14 @@ import images from "../images";
 
 const fetchCompanyLogo = async (companyName) => {
   try {
-    const response = await fetch(`https://api.logo.dev/search?q=${encodeURIComponent(companyName)}`, {
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`, // Use the environment variable
-      },
-    });
+    const response = await fetch(
+      `https://api.logo.dev/search?q=${encodeURIComponent(companyName)}`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`, // Use the environment variable
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch the logo");
@@ -25,7 +28,6 @@ const fetchCompanyLogo = async (companyName) => {
     return null;
   }
 };
-
 
 function ApplicationEntry({ application, onEditButtonClick }) {
   const [iconUrl, setIconUrl] = useState(images.Company2); // Default to Company2 image

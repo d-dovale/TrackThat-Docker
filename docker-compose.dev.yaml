@@ -1,13 +1,11 @@
 services:
   web:
-    build:
-      context: .
-      args:
-        VITE_API_KEY: ${VITE_API_KEY}
-    environment:
-      - VITE_API_KEY=${VITE_API_KEY}
+    build: "./TrackThat-Front-End"
     ports:
       - 5173:5173
+    volumes:
+      - ./TrackThat-Front-End:/app
+      - /app/node_modules  # Exclude node_modules from being overwritten
     command: ["npm", "run", "dev"]
 
   api:
@@ -15,3 +13,5 @@ services:
     command: "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
     ports:
       - 8000:8000
+    volumes:
+      - ./TrackThat-Back-End:/app

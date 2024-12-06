@@ -1,5 +1,4 @@
 from sqlmodel import Field, SQLModel, create_engine, Relationship
-from enum import Enum 
 import datetime
 
 class UserBase(SQLModel):
