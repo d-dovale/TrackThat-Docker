@@ -30,8 +30,6 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
     if (res.status !== 201) {
       throw new Error(`Error, add application unsuccessful ${res.status}`);
     }
-    const data = await res.json();
-    console.log("New Application: ", data);
   };
 
   const onSubmit = async (e) => {
@@ -41,7 +39,6 @@ function AddAppWindows({ show, onClose, onSuccessfulSubmit }) {
         await addApplicationRequest();
         onSuccessfulSubmit();
       } catch (e) {
-        console.log(e);
         alert("Unsuccessful add.", e);
       }
     } else {

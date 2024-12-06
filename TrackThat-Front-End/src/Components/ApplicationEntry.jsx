@@ -19,7 +19,6 @@ const fetchCompanyLogo = async (companyName) => {
     }
 
     const data = await response.json();
-    console.log(`API response for ${companyName}:`, data);
 
     // Return the first valid logo URL if available
     return data.length > 0 && data[0].logo_url ? data[0].logo_url : null;

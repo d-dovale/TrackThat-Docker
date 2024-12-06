@@ -54,7 +54,6 @@ function LoginPage() {
         return;
       }
       const data = await res.json();
-      console.log(data);
       localStorage.setItem("token", data.access_token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("email", data.email);

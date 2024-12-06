@@ -30,8 +30,6 @@ function EditAppWindows({ show, onClose, onSuccessfulEdit, application }) {
     if (res.status !== 201) {
       throw new Error(`Error, edit application unsuccessful ${res.status}`);
     }
-    const data = await res.json();
-    console.log("Edit Application: ", data);
   };
 
   const onSubmit = async (e) => {
@@ -41,8 +39,7 @@ function EditAppWindows({ show, onClose, onSuccessfulEdit, application }) {
         await editApplicationRequest();
         onSuccessfulEdit();
       } catch (e) {
-        console.log(e);
-        alert("Unsuccessful edit.");
+        alert("Unsuccessful edit.", e);
       }
     } else {
       alert("Need to provide all required values to edit.");
@@ -66,8 +63,6 @@ function EditAppWindows({ show, onClose, onSuccessfulEdit, application }) {
     if (res.status !== 200) {
       throw new Error(`Error, delete application unsuccessful ${res.status}`);
     }
-    const data = await res.json();
-    console.log("Delete Application: ", data);
   };
 
   const onDelete = async (e) => {
@@ -76,8 +71,7 @@ function EditAppWindows({ show, onClose, onSuccessfulEdit, application }) {
       await deleteApplicationRequest();
       onSuccessfulEdit(true);
     } catch (e) {
-      console.log(e);
-      alert("Unsuccessful delete.");
+      alert("Unsuccessful delete.", e);
     }
   };
 
