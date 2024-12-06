@@ -107,7 +107,9 @@ There are multiple ways to set environment variables in Windows:
 #### Regular Mode
 `docker-compose up --build`
 
+
 > Notice the build flag `--build`. If you already have a Docker [container](https://www.docker.com/resources/what-container/) of our application you can omit the build flag.
+
 
 ### Troubleshooting Tips
 
