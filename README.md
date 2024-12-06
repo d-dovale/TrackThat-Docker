@@ -101,11 +101,16 @@ There are multiple ways to set environment variables in Windows:
 
 1. Set a environment variable named `VITE_API_KEY` on your system whose value is your Logo.dev API key.
 
-2. Run and build our application with the following commands:
-   - _development mode_: `docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up --build`
-   - _regular mode_: `docker-compose up --build`
-
-> Notice the build flag `--build`. If you already have a Docker [container](https://www.docker.com/resources/what-container/) of our application you can omit the build flag.
+2. Run and build our application for the first time with the following commands:
+#### Development Mode
+```bash
+docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up --build
+```
+#### Regular Mode
+```bash
+docker-compose up --build
+```
+3. If you have already built the application, you can omit the `--build` flag to run the same containers.
 
 ### Troubleshooting Tips
 
