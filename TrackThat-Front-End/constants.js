@@ -1,6 +1,7 @@
 const base = import.meta.env.VITE_URL || "127.0.0.1";
 
 console.log("Constants: ===========", base)
+console.log("Constants: ===========", import.meta.env.VITE_URL)
 
 export const SIGNUPURL = `http://${base}:8000/auth/signup`
 export const LOGINURL = `http://${base}:8000/auth/login-email`
