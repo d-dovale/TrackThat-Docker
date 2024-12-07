@@ -4,14 +4,16 @@ services:
       context: ./TrackThat-Front-End # Set the context to the front-end directory
       args:
         VITE_API_KEY: ${VITE_API_KEY} # Pass build arguments
+        VITE_URL: ${VITE_URL}
     environment:
       - VITE_API_KEY=${VITE_API_KEY} # Set environment variables
+      - VITE_URL=${VITE_URL}
     ports:
       - 5173:5173
     command: ["npm", "run", "dev"]
 
   api:
     build: "./TrackThat-Back-End"
-    command: "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    command: "uvicorn app.main:app --host 0.0.0.0 --port 8000"
     ports:
       - 8000:8000
