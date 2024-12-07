@@ -1,82 +1,77 @@
-html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: auto;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #2D1E45;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  font-family: "Montserrat", sans-serif;
+  background-color: #2d1e45;
 }
 
 .landing-page {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    min-height: 100vh;
-    min-width: 100vh;
-    background: url('../src/assets/background_pic.png');
-    background-color: #2D1E45; /* Fallback color */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #2D1E45;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 100vh;
+  min-width: 100vh;
+  background: url("../assets/background_pic.png") center center/cover no-repeat
+    fixed;
 }
 
 .content-container {
-    text-align: center;
-    width: 100%;
-    margin: 20px 0;
-    margin-top: 50px;
+  text-align: center;
+  width: 100%;
+  margin: 20px 0;
+  margin-top: 50px;
 }
-  
+
 .main-title {
-    font-size: 64px;
-    font-weight: normal; 
-    color: #FFFFFF;
-    margin-bottom: 10px; /* Space between the title and subtitle */
-    width: 100%; /* Full width */
-    margin: 0 auto 10px auto;
+  font-size: 64px;
+  font-weight: normal;
+  color: #ffffff;
+  margin-bottom: 10px; /* Space between the title and subtitle */
+  width: 100%; /* Full width */
+  margin: 0 auto 10px auto;
 }
-  
+
 .subtitle {
-    font-size: 24px; /* Smaller font size for the subtitle */
-    color: #B7B7B7; /* White color for consistency */
-    width: 100%; /* Full width */
-    max-width: 700px; /* Maximum width to match the design */
-    margin: 0 auto 20px auto;
-    margin-top: 20px;
-    line-height: 1.4; /* Adjust line height for better readability */
+  font-size: 24px; /* Smaller font size for the subtitle */
+  color: #b7b7b7; /* White color for consistency */
+  width: 100%; /* Full width */
+  max-width: 700px; /* Maximum width to match the design */
+  margin: 0 auto 20px auto;
+  margin-top: 20px;
+  line-height: 1.4; /* Adjust line height for better readability */
 }
-  
+
 .try-now-button {
-    font-size: 2rem; /* Increase font size */
-    font-weight: bolder;
-    padding: 15px 30px; /* Increase padding for a bigger button */
-    background-color: #462F4C;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px; /* Slightly more rounded */
-    margin-top: 80px; /* Adjust top margin */
+  font-size: 2rem; /* Increase font size */
+  font-weight: bolder;
+  padding: 15px 30px; /* Increase padding for a bigger button */
+  background-color: #462f4c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px; /* Slightly more rounded */
+  margin-top: 80px; /* Adjust top margin */
 }
 
 .try-now-button:hover {
-    background-color: #53385b; /* Darker color on hover */
+  background-color: #53385b; /* Darker color on hover */
 }
-  
+
 .icon-container {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .icon {
-    width: 60px; /* Adjust this value to reduce the size of the icons */
-    height: 60px; /* Maintains the aspect ratio */
-    display: block; /* Ensures that the image is treated as a block-level element, centering if needed */
+  width: 60px; /* Adjust this value to reduce the size of the icons */
+  height: 60px; /* Maintains the aspect ratio */
+  display: block; /* Ensures that the image is treated as a block-level element, centering if needed */
 }
