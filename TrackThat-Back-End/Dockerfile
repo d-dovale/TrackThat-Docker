@@ -8,6 +8,9 @@ COPY . /app
 COPY mountdb.sh /usr/local/bin/mountdb.sh
 
 RUN pip install -r requirements.txt
+
+RUN python app/models.py
+
 RUN dos2unix /usr/local/bin/mountdb.sh && chmod +x /usr/local/bin/mountdb.sh
 
 ENTRYPOINT ["bash", "/usr/local/bin/mountdb.sh"]
